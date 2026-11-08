@@ -1,8 +1,8 @@
-
 from textual.app import App, ComposeResult
 from textual.widgets import Static, Footer
 from textual.containers import Center, Middle, Vertical
 
+from config import SettingsManager
 from screens.settings import SettingsScreen
 
 
@@ -57,7 +57,7 @@ class TerminalGame(App):
 
     def __init__(self):
         super().__init__()
-        self.difficulty = "MEDIUM"
+        self.config = SettingsManager()
 
         self.options = [
             "START GAME",
@@ -66,91 +66,54 @@ class TerminalGame(App):
             "EXIT",
         ]
         self.selected = 0
+
     def compose(self) -> ComposeResult:
         with Center():
             with Middle():
                 with Vertical(id="panel"):
-
-                    yield Static(
-                        "DARK QUEST",
-                        id="title"
-                    )
-
-                    yield Static(
-                        "A TERMINAL ADVENTURE",
-                        id="subtitle"
-                    )
-
-                    yield Static(
-                        self.render_menu(),
-                        id="menu"
-                    )
-
-                    yield Static(
-                        "Welcome, Adventurer!",
-                        id="status"
-                    )
+                    yield Static("DARK QUEST", id="title")
+                    yield Static("A TERMINAL ADVENTURE", id="subtitle")
+                    yield Static(self.render_menu(), id="menu")
+                    yield Static("Welcome, Adventurer!", id="status")
         yield Footer()
 
     def render_menu(self):
         lines = []
         for index, option in enumerate(self.options):
-
             if index == self.selected:
-                lines.append(
-                    f"[bold cyan]  > {option}[/]"
-                )
+                lines.append(f"[bold cyan]  > {option}[/]")
             else:
-                lines.append(
-                    f"    {option}"
-                )
-
+                lines.append(f"    {option}")
         return "\n\n".join(lines)
 
     def update_menu(self):
-
         menu = self.query_one("#menu", Static)
-
         menu.update(self.render_menu())
 
     def action_move_up(self):
-
-        self.selected = (
-            self.selected - 1
-        ) % len(self.options)
-
+        self.selected = (self.selected - 1) % len(self.options)
         self.update_menu()
 
     def action_move_down(self):
-
-        self.selected = (
-            self.selected + 1
-        ) % len(self.options)
-
+        self.selected = (self.selected + 1) % len(self.options)
         self.update_menu()
 
     def action_select(self):
-
         selected_option = self.options[self.selected]
-
         status = self.query_one("#status", Static)
 
         if selected_option == "START GAME":
-            status.update(f"Starting game with difficulty: {self.difficulty}...")
+            difficulty = self.config.get("difficulty", "MEDIUM")
+            status.update(f"Starting game with difficulty: {difficulty}...")
         elif selected_option == "SETTINGS":
             status.update("Settings selected.")
             self.push_screen(SettingsScreen())
         elif selected_option == "ABOUT":
-
             status.update("Dark Quest - Version 1.0")
-
         elif selected_option == "EXIT":
-
             self.exit()
 
 
 if __name__ == "__main__":
-
     app = TerminalGame()
-
     app.run()

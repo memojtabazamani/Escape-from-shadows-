@@ -72,3 +72,6 @@ Thumbs.db
 # Textual / logs
 *.log
 textual.log
+
+# User-specific game settings
+settings.json

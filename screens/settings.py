@@ -2,6 +2,8 @@ from textual.widgets import Static, Footer
 from textual.containers import Center, Middle, Vertical
 from textual.screen import Screen
 
+from config import SettingsManager
+
 
 class SettingsScreen(Screen):
     CSS = """
@@ -15,7 +17,7 @@ class SettingsScreen(Screen):
         ("left", "prev_difficulty", "Prev Value"),
         ("right", "next_difficulty", "Next Value"),
         ("enter", "select", "Select"),
-        ("escape", "quit", "Back"), 
+        ("escape", "quit", "Back"),
     ]
 
     DIFFICULTIES = ["EASY", "MEDIUM", "HARD"]
@@ -33,11 +35,22 @@ class SettingsScreen(Screen):
         self.diff_index = 1
         self.music_enable = True
         self.sound_enable = True
+
+    @property
+    def config(self) -> SettingsManager:
+        """Shortcut to the application's settings manager."""
+        return self.app.config
+
     def on_mount(self):
-        current = getattr(self.app, "difficulty", "MEDIUM")
-        self.diff_index = self.DIFFICULTIES.index(current) if current in self.DIFFICULTIES else 1
-        self.music_enable = getattr(self.app, "music_enable", True)
-        self.sound_enable = getattr(self.app, "sound_enable", True)
+        """Load the persisted values into the settings screen."""
+        current_difficulty = self.config.get("difficulty", "MEDIUM")
+        if current_difficulty in self.DIFFICULTIES:
+            self.diff_index = self.DIFFICULTIES.index(current_difficulty)
+        else:
+            self.diff_index = 1
+
+        self.sound_enable = self.config.get("sound", True)
+        self.music_enable = self.config.get("music", True)
         self.update_menu()
 
     def compose(self):
@@ -50,18 +63,26 @@ class SettingsScreen(Screen):
                     yield Static("Use Enter or Arrow keys to change values", id="status")
         yield Footer()
 
+    def _persist_state(self) -> None:
+        """Update the in-memory config and save it immediately."""
+        self.config.set("difficulty", self.DIFFICULTIES[self.diff_index])
+        self.config.set("sound", self.sound_enable)
+        self.config.set("music", self.music_enable)
+
     def toggle_sound(self):
         self.sound_enable = not self.sound_enable
-        self.app.sound_enable = self.sound_enable
+        self._persist_state()
         self.update_menu()
-        current_sound = self.SOUND_MUSIC_OPTIONS[self.sound_enable  ]
+        current_sound = self.SOUND_MUSIC_OPTIONS[self.sound_enable]
         self.query_one("#status", Static).update(f"Sound set to {current_sound}")
+
     def toggle_music(self):
         self.music_enable = not self.music_enable
-        self.app.music_enable = self.music_enable
+        self._persist_state()
         self.update_menu()
         current_music = self.SOUND_MUSIC_OPTIONS[self.music_enable]
         self.query_one("#status", Static).update(f"Music set to {current_music}")
+
     def render_menu(self):
         lines = []
         for index, option in enumerate(self.options):
@@ -71,7 +92,7 @@ class SettingsScreen(Screen):
             else:
                 display_text = option
             if option == "SOUND":
-                current_sound = self.SOUND_MUSIC_OPTIONS[self.sound_enable  ]
+                current_sound = self.SOUND_MUSIC_OPTIONS[self.sound_enable]
                 display_text = f"SOUND: < {current_sound} >"
             if option == "MUSIC":
                 current_music = self.SOUND_MUSIC_OPTIONS[self.music_enable]
@@ -94,15 +115,14 @@ class SettingsScreen(Screen):
     def action_move_down(self):
         self.selected = (self.selected + 1) % len(self.options)
         self.update_menu()
+
     def cycle_difficulty(self, step=1):
         self.diff_index = (self.diff_index + step) % len(self.DIFFICULTIES)
-        selected_diff = self.DIFFICULTIES[self.diff_index]
-        
-        self.app.difficulty = selected_diff
-
+        self._persist_state()
         self.update_menu()
+        selected_diff = self.DIFFICULTIES[self.diff_index]
         self.query_one("#status", Static).update(f"Difficulty set to {selected_diff}")
-    
+
     def action_next_difficulty(self):
         if self.options[self.selected] == "DIFFICULTY":
             self.cycle_difficulty(1)

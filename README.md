@@ -49,6 +49,7 @@ python index.py
 ```text
 .
 ├── index.py                 # Application entry point
+├── config.py                # JSON settings persistence (SettingsManager)
 ├── screens/
 │   ├── main_menu.py         # Main menu screen (stub)
 │   └── settings.py          # Settings screen

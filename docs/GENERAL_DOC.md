@@ -50,6 +50,7 @@ Use the arrow keys to navigate, Enter to select, and Escape to go back or quit.
 ```text
 .
 ├── index.py                 # Application entry point
+├── config.py                # JSON settings persistence (SettingsManager)
 ├── screens/
 │   ├── main_menu.py         # Main menu screen (stub)
 │   └── settings.py          # Settings screen implementation
@@ -64,7 +65,7 @@ Use the arrow keys to navigate, Enter to select, and Escape to go back or quit.
 
 ## Configuration
 
-Game settings such as difficulty, sound, and music are currently managed in memory via the settings screen. Persistent storage will be handled by `game/settings_manager.py` as the project grows.
+Game settings (difficulty, sound, music) are persisted to a local `settings.json` file via `config.py` (`SettingsManager`). The settings screen reads from and writes to `self.app.config`, and changes are saved immediately.
 
 ## Development Notes
 
@@ -75,7 +76,6 @@ Game settings such as difficulty, sound, and music are currently managed in memo
 ## Future Plans
 
 - Implement `main_menu.py` with richer visuals and a game-start flow.
-- Implement `settings_manager.py` to persist settings to a file.
 - Add the actual gameplay screen and adventure mechanics.
 - Add unit tests for screen navigation and settings logic.
 
