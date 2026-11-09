@@ -52,10 +52,8 @@ Use the arrow keys to navigate, Enter to select, and Escape to go back or quit.
 ├── index.py                 # Application entry point
 ├── config.py                # JSON settings persistence (SettingsManager)
 ├── screens/
-│   ├── main_menu.py         # Main menu screen (stub)
+│   ├── main_menu.py         # Main menu screen
 │   └── settings.py          # Settings screen implementation
-├── game/
-│   └── settings_manager.py  # Settings management logic (stub)
 ├── docs/
 │   └── GENERAL_DOC.md       # This document
 ├── AGENTS.md                # Instructions for AI assistants
@@ -75,7 +73,7 @@ Game settings (difficulty, sound, music) are persisted to a local `settings.json
 
 ## Future Plans
 
-- Implement `main_menu.py` with richer visuals and a game-start flow.
+- Wire the main menu's START GAME option to a real gameplay screen.
 - Add the actual gameplay screen and adventure mechanics.
 - Add unit tests for screen navigation and settings logic.
 
