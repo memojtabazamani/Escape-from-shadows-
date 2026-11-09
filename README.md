@@ -51,10 +51,8 @@ python index.py
 ├── index.py                 # Application entry point
 ├── config.py                # JSON settings persistence (SettingsManager)
 ├── screens/
-│   ├── main_menu.py         # Main menu screen (stub)
+│   ├── main_menu.py         # Main menu screen
 │   └── settings.py          # Settings screen
-├── game/
-│   └── settings_manager.py  # Settings management logic (stub)
 ├── docs/
 │   └── GENERAL_DOC.md       # General documentation
 ├── AGENTS.md                # Agent / contributor guidelines
@@ -66,7 +64,7 @@ python index.py
 
 - Follow PEP 8 and use type hints where practical.
 - Keep screen logic in `screens/` and shared game state in `game/`.
-- Run `python -m py_compile index.py screens/*.py game/*.py` before committing to catch syntax errors.
+- Run `python -m py_compile index.py config.py screens/*.py` before committing to catch syntax errors.
 
 ## Documentation
 
