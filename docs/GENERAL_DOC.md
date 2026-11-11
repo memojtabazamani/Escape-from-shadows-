@@ -2,20 +2,21 @@
 
 ## Overview
 
-**Escape from Shadows** is a terminal-based adventure game built with Python and the [Textual](https://textual.textualize.io/) framework. The project provides a polished Text User Interface (TUI) with a main menu, settings, and about screens, laying the foundation for future gameplay.
+**Escape from Shadows** is a terminal-based adventure game built with Python and the [Textual](https://textual.textualize.io/) framework. Players navigate a dark, threatening manor where light is life, every room incurs an oil cost, and darkness brings death by the Shadow.
 
 ## Features
 
-- **Terminal User Interface (TUI):** Clean, keyboard-driven menus styled with Textual CSS.
-- **Main Menu:** Start game, Settings, About, Exit.
-- **Settings Screen:** Adjust difficulty (Easy / Medium / Hard), toggle sound, and toggle music.
-- **Keyboard Navigation:** Full arrow-key and Enter/Escape control.
-- **Extensible Structure:** Separate modules for screens and game logic, making it easy to add new features.
+- **Terminal User Interface (TUI):** Clean, keyboard-driven interface styled with Textual CSS across three dedicated zones (scene, status, footer).
+- **Interactive Gameplay Loop:** Navigate rooms, inspect choices, examine sensory telegraphs, and unlock exits.
+- **Lantern Oil Economy:** Quantized 10-cell bar reflecting oil depletion; first-visit costs (10 oil), revisit discounts (5 oil), and careful-action costs (25 oil).
+- **Honest Consequence Model:** Telegraphed deaths with structured causes and lessons; quiet escape resolutions.
+- **Data-Driven Architecture:** All room prose, choices, requirements, and effects live in JSON data files (`data/content.json`).
+- **Settings Screen:** Adjust difficulty (Easy / Medium / Hard), sound, and music preferences.
 
 ## Requirements
 
 - Python 3.10 or newer
-- Textual
+- Textual, pytest, anyio
 
 ## Installation
 
@@ -23,7 +24,7 @@
 2. Install dependencies:
 
 ```bash
-pip install textual
+pip install textual pytest anyio
 ```
 
 ## Usage
@@ -34,28 +35,52 @@ Start the application from the project root:
 python index.py
 ```
 
-Use the arrow keys to navigate, Enter to select, and Escape to go back or quit.
+Use the arrow keys to navigate choices, Enter to select, and Escape to go back or return to menu.
 
 ## Controls
 
 | Key      | Action                              |
 |----------|-------------------------------------|
-| ↑ / ↓    | Move selection up / down            |
-| ← / →    | Change the value of a setting       |
-| Enter    | Confirm selection or toggle a value |
-| Escape   | Go back / exit                      |
+| ↑ / ↓    | Move choice / menu cursor           |
+| ← / →    | Change setting value                |
+| Enter    | Select choice / toggle setting      |
+| j / J    | Open in-game journal overlay        |
+| Escape   | Go back / return to menu (auto-saves)|
 
 ## Project Structure
 
 ```text
 .
-├── index.py                 # Application entry point
+├── index.py                 # Application entry point (TerminalGame)
 ├── config.py                # JSON settings persistence (SettingsManager)
+├── data/
+│   └── content.json         # Declarative room, choice, item, and consequence data
+├── game/
+│   ├── state.py             # RunState model with snapshot/restore & inventory cap
+│   ├── content_schema.py    # Schema definitions, loader, and validator
+│   ├── effects.py           # Requirements and effects resolution engine
+│   ├── lantern.py           # Lantern drain rules and cost calculator
+│   ├── difficulty.py        # Difficulty parameters and knob configurations
+│   ├── composure.py         # Composure threshold calculations
+│   ├── distortion.py        # Unreliable narration text distortion
+│   ├── hints.py             # Stuck hint calculation on Easy difficulty
+│   ├── journal.py           # Journal model & category tracking
+│   ├── multiturn.py         # Multi-turn continuous action engine
+│   ├── sound.py             # Bell-based audio dispatch service
+│   └── save.py              # Single-slot atomic JSON persistence
 ├── screens/
-│   ├── main_menu.py         # Main menu screen
-│   └── settings.py          # Settings screen implementation
+│   ├── main_menu.py         # Main menu screen (Start, Continue, Settings, Exit)
+│   ├── settings.py          # Settings screen (Difficulty, Sound, Music)
+│   ├── game.py              # Gameplay screen with scene, status, and footer zones
+│   ├── death.py             # Terminal death screen with structured cause, lesson & hint
+│   ├── ending.py            # Terminal escape ending screen
+│   └── journal.py           # Journal modal overlay (j/J)
+├── tests/                   # Complete regression test suite (263 passing tests)
 ├── docs/
-│   └── GENERAL_DOC.md       # This document
+│   ├── GENERAL_DOC.md       # This document
+│   ├── SUGGEST.md           # Master game design specification
+│   ├── PHASE1/              # Phase 1 planning archive (superseded by PHASE2)
+│   └── PHASE2/              # Phase 2: The House plan and task directory
 ├── AGENTS.md                # Instructions for AI assistants
 ├── README.md                # Project overview
 └── LICENSE                  # MIT License
@@ -67,15 +92,20 @@ Game settings (difficulty, sound, music) are persisted to a local `settings.json
 
 ## Development Notes
 
-- The main application class is `TerminalGame`, defined in `index.py`.
-- Each screen is a separate class inheriting from `textual.screen.Screen`.
-- Shared state (e.g., `difficulty`) is stored on the app object and accessed via `self.app` inside screens.
+- The main application class is `TerminalGame`, defined in `index.py`. It owns `self.config` and the active run state (`self.active_run`).
+- Each screen inherits from `textual.screen.Screen`.
+- Shared state is managed via `self.app` across screens.
+- Run tests: `python -m pytest`
 
-## Future Plans
+## Roadmap & Phase 3 Handoff
 
-- Wire the main menu's START GAME option to a real gameplay screen.
-- Add the actual gameplay screen and adventure mechanics.
-- Add unit tests for screen navigation and settings logic.
+Phase 2 ("The House") is complete with all 55 tasks implemented across 9 vertical slices.
+
+Planned for **Phase 3 — The Shadow**:
+- Shadow as a pursuing entity with rules (lit-room rule, pursuit timer)
+- Shadow dialogue drawn from the player's own history
+- 5–7 ending spread and endings gallery
+- Three memory fragments
 
 ## License
 

@@ -1,6 +1,9 @@
 # Phase 1 — Vertical Slice: Task Index
 
-Master plan: [`EPIC_Phase1_VerticalSlice_PLAN.md`](EPIC_Phase1_VerticalSlice_PLAN.md)
+> [!WARNING]
+> **SUPERSEDED BY PHASE 2:** The tasks in this directory were superseded and completed within **[Phase 2 — The House](../PHASE2/README.md)** (Slice A: Completing the Foundation, tasks `A01`–`A14`). This directory is retained as a historical planning record only. Please consult [`docs/PHASE2/`](../PHASE2/README.md) for all live tasks and active execution records.
+
+Master plan: [`EPIC_Phase1_VerticalSlice_PLAN.md`](EPIC_Phase1_VerticalSlice_PLAN.md) (Historical)
 Blueprint: [`../SUGGEST.md`](../SUGGEST.md) §12
 
 **26 tasks · ~66.5 h · critical path ≈ 20 tasks / ≈ 51 h**

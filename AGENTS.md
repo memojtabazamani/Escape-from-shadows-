@@ -16,11 +16,34 @@ This file guides AI assistants and contributors working on **Escape from Shadows
 .
 ├── index.py                 # Application entry point; hosts TerminalGame app
 ├── config.py                # JSON settings persistence (SettingsManager)
+├── data/
+│   └── content.json         # Declarative room, choice, item, and consequence data
+├── game/
+│   ├── state.py             # RunState model with snapshot/restore & inventory cap
+│   ├── content_schema.py    # Schema definitions, loader, and validator
+│   ├── effects.py           # Requirements checker and effect applicator
+│   ├── lantern.py           # Lantern drain rules and cost calculator
+│   ├── difficulty.py        # Difficulty parameters and knob configurations
+│   ├── composure.py         # Composure threshold calculations
+│   ├── distortion.py        # Unreliable narration text distortion
+│   ├── hints.py             # Stuck hint calculation on Easy difficulty
+│   ├── journal.py           # Journal model & category tracking
+│   ├── multiturn.py         # Multi-turn continuous action engine
+│   ├── sound.py             # Bell-based audio dispatch service
+│   └── save.py              # Single-slot atomic JSON persistence
 ├── screens/
-│   ├── main_menu.py         # Main menu screen
-│   └── settings.py          # Settings screen for difficulty, sound, music
+│   ├── main_menu.py         # Main menu screen (Start, Continue, Settings, Exit)
+│   ├── settings.py          # Settings screen for difficulty, sound, music
+│   ├── game.py              # Gameplay screen with scene, status, and footer zones
+│   ├── death.py             # Terminal death screen with structured cause, lesson & hint
+│   ├── ending.py            # Terminal victory/escape screen
+│   └── journal.py           # Journal modal overlay (j/J)
+├── tests/                   # Full pytest regression suite (263 passing tests)
 ├── docs/
-│   └── GENERAL_DOC.md       # General user and developer documentation
+│   ├── GENERAL_DOC.md       # General user and developer documentation
+│   ├── SUGGEST.md           # Master game design specification
+│   ├── PHASE1/              # Phase 1 planning archive (superseded by PHASE2)
+│   └── PHASE2/              # Phase 2: The House plan and task directory
 └── AGENTS.md                # This file
 ```
 
@@ -54,10 +77,11 @@ python index.py
 
 | Key      | Action                |
 |----------|---------------------- |
-| ↑ / ↓    | Navigate menu         |
+| ↑ / ↓    | Navigate menu / choices|
 | Enter    | Select / toggle value |
 | ← / →    | Change setting value  |
-| Escape   | Exit / back           |
+| j / J    | Open in-game journal  |
+| Escape   | Exit / back (auto-save)|
 
 ## Things to Avoid
 
