@@ -53,15 +53,34 @@ TIERS = {"scar", "setback", "death"}
 # Valid effect verbs and the keys they require.
 EFFECT_VERBS: dict[str, dict[str, set[str]]] = {
     "spend_oil": {"required": {"amount"}, "optional": set()},
+    "spend_composure": {"required": {"amount"}, "optional": set()},
+    "restore_composure": {"required": {"amount"}, "optional": set()},
     "grant_item": {"required": {"item"}, "optional": set()},
+    "drop_item": {"required": {"item"}, "optional": set()},
+    "spend_item": {"required": {"item"}, "optional": set()},
     "set_flag": {"required": {"flag"}, "optional": set()},
+    "start_multiturn": {
+        "required": {"action_id", "total_steps"},
+        "optional": {"step_costs", "completion_effects", "cancel_effects"},
+    },
+    "advance_multiturn": {"required": set(), "optional": {"action_id"}},
+    "cancel_multiturn": {"required": set(), "optional": {"action_id"}},
+    "restore_oil": {"required": set(), "optional": {"amount"}},
 }
 
 # Valid requirement predicates and the keys they require.
 REQUIREMENT_PREDICATES: dict[str, dict[str, set[str]]] = {
     "has_flag": {"required": {"flag"}, "optional": set()},
     "has_item": {"required": {"item"}, "optional": set()},
+    "lacks_item": {"required": {"item"}, "optional": set()},
+    "has_free_slot": {"required": set(), "optional": set()},
+    "inventory_under": {"required": {"count"}, "optional": set()},
     "lantern_above": {"required": {"amount"}, "optional": set()},
+    "composure_above": {"required": {"amount"}, "optional": set()},
+    "composure_under": {"required": {"amount"}, "optional": set()},
+    "has_active_multiturn": {"required": set(), "optional": {"action_id"}},
+    "no_active_multiturn": {"required": set(), "optional": {"action_id"}},
+    "multiturn_step_is": {"required": {"step"}, "optional": {"action_id"}},
 }
 
 
@@ -108,6 +127,49 @@ def validate_content(content: dict[str, Any]) -> list[ValidationProblem]:
         problems.extend(_validate_room(room, index, room_ids, choice_ids))
         if isinstance(room, dict) and isinstance(room.get("id"), str):
             rooms_by_id[room["id"]] = room
+
+    # Item validation (Task C03)
+    item_ids: set[str] = set()
+    raw_items = content.get("items")
+    if raw_items is not None:
+        if not isinstance(raw_items, list):
+            problems.append(ValidationProblem("<root>", "items", "'items' must be a list of item records"))
+        else:
+            for index, item in enumerate(raw_items):
+                item_prefix = f"items[{index}]"
+                if not isinstance(item, dict):
+                    problems.append(ValidationProblem(item_prefix, "<item>", "item must be a dict"))
+                    continue
+                i_id = item.get("id")
+                if not isinstance(i_id, str) or not i_id:
+                    problems.append(ValidationProblem(item_prefix, "id", "item id must be a non-empty string"))
+                elif i_id in item_ids:
+                    problems.append(ValidationProblem(item_prefix, "id", f"duplicate item id '{i_id}'"))
+                else:
+                    item_ids.add(i_id)
+
+                name = item.get("name")
+                if not isinstance(name, str) or not name:
+                    problems.append(ValidationProblem(item_prefix, "name", "item name must be a non-empty string"))
+
+                desc = item.get("description")
+                if not isinstance(desc, str) or not desc:
+                    problems.append(ValidationProblem(item_prefix, "description", "item description must be a non-empty string"))
+
+        # Referential integrity: every grant_item must resolve to a defined item
+        for r_id, room in rooms_by_id.items():
+            for ch in room.get("choices", []):
+                for eff in ch.get("effects", []):
+                    if eff.get("verb") == "grant_item":
+                        target_item = eff.get("item")
+                        if target_item not in item_ids:
+                            problems.append(
+                                ValidationProblem(
+                                    f"choice:{ch.get('id')}",
+                                    "grant_item",
+                                    f"item '{target_item}' has no definition in 'items'",
+                                )
+                            )
 
     # Cross-record checks
     problems.extend(_validate_destinations(rooms_by_id))
@@ -211,6 +273,14 @@ def _validate_choice(
     else:
         for req_index, requirement in enumerate(requirements):
             problems.extend(_validate_requirement(requirement, choice_prefix, "requirements", req_index))
+
+    expires_after = choice.get("expires_after_turns")
+    if expires_after is not None and (not isinstance(expires_after, int) or expires_after <= 0):
+        problems.append(ValidationProblem(choice_prefix, "expires_after_turns", "must be a positive integer if present"))
+
+    expiry_text = choice.get("expiry_text")
+    if expiry_text is not None and not isinstance(expiry_text, str):
+        problems.append(ValidationProblem(choice_prefix, "expiry_text", "must be a string if present"))
 
     return problems
 
@@ -392,6 +462,14 @@ SAMPLE_CONTENT: dict[str, Any] = {
                     "id": "library_return",
                     "label": "Return to the hall",
                     "destination": "hall",
+                },
+                {
+                    "id": "library_search_alcove",
+                    "label": "Search the darkened alcove behind the shelves",
+                    "destination": "old_library",
+                    "tier": "scar",
+                    "expires_after_turns": 2,
+                    "expiry_text": "The alcove has filled with heavy shadows; you hesitated too long.",
                 },
             ],
         },

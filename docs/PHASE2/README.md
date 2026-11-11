@@ -28,100 +28,100 @@ Completes Phase 1's unbuilt loop. Mirrors `../PHASE1/TASK_B01`–`F01`; **this f
 | Task | Title | Est. | Depends on | Status |
 |---|---|---|---|---|
 | [A01](TASK_A01_UI.md) | Gameplay screen skeleton with the three zones | 3h | GP-2, GP-3 | DONE |
-| [A02](TASK_A02_UI.md) | Render a room from content records | 3h | A01 | TODO |
-| [A03](TASK_A03_UI.md) | Selectable choices, requirement gating, room transition | 3h | A02 | TODO |
-| [A04](TASK_A04_UI.md) | Status zone: lantern bar, turn counter, low-oil warning | 2.5h | A01 | TODO |
-| [A05](TASK_A05_SVC.md) | Lantern drain rules | 3h | A03 | TODO |
-| [A06](TASK_A06_SVC.md) | Zero-oil condition and its honest consequence | 2.5h | A05 | TODO |
-| [A07](TASK_A07_SVC.md) | THE HALL content: hub, two doorways, the stuck front door | 3h | A06, A04 | TODO |
-| [A08](TASK_A08_SVC.md) | OLD LIBRARY content and the BOOK's costly read | 3h | A03 | TODO |
-| [A09](TASK_A09_SVC.md) | One honest death at the left doorway | 2.5h | A07 | TODO |
-| [A10](TASK_A10_SVC.md) | One honest ending at the front door | 2.5h | A08, A09 | TODO |
-| [A11](TASK_A11_UI.md) | Death screen and ending screen | 3.5h | A09, A10 | TODO |
-| [A12](TASK_A12_UI.md) | Wire `START GAME` and the run lifecycle | 2h | A11 | TODO |
-| [A13](TASK_A13_TEST.md) | Vertical-slice regression suite and the first-stranger playtest | 3h | A12 | TODO |
-| [A14](TASK_A14_DOCS.md) | Re-sync `AGENTS.md`, `README.md`, `GENERAL_DOC.md`, `SUGGEST.md` §0 | 1.5h | A13 | TODO |
+| [A02](TASK_A02_UI.md) | Render a room from content records | 3h | A01 | DONE |
+| [A03](TASK_A03_UI.md) | Selectable choices, requirement gating, room transition | 3h | A02 | DONE |
+| [A04](TASK_A04_UI.md) | Status zone: lantern bar, turn counter, low-oil warning | 2.5h | A01 | DONE |
+| [A05](TASK_A05_SVC.md) | Lantern drain rules | 3h | A03 | DONE |
+| [A06](TASK_A06_SVC.md) | Zero-oil condition and its honest consequence | 2.5h | A05 | DONE |
+| [A07](TASK_A07_SVC.md) | THE HALL content: hub, two doorways, the stuck front door | 3h | A06, A04 | DONE |
+| [A08](TASK_A08_SVC.md) | OLD LIBRARY content and the BOOK's costly read | 3h | A03 | DONE |
+| [A09](TASK_A09_SVC.md) | One honest death at the left doorway | 2.5h | A07 | DONE |
+| [A10](TASK_A10_SVC.md) | One honest ending at the front door | 2.5h | A08, A09 | DONE |
+| [A11](TASK_A11_UI.md) | Death screen and ending screen | 3.5h | A09, A10 | DONE |
+| [A12](TASK_A12_UI.md) | Wire `START GAME` and the run lifecycle | 2h | A11 | DONE |
+| [A13](TASK_A13_TEST.md) | Vertical-slice regression suite and the first-stranger playtest | 3h | A12 | DONE |
+| [A14](TASK_A14_DOCS.md) | Re-sync `AGENTS.md`, `README.md`, `GENERAL_DOC.md`, `SUGGEST.md` §0 | 1.5h | A13 | DONE |
 
 ## Slice B — Difficulty as a Real System (6)
 
 | Task | Title | Est. | Depends on | Status |
 |---|---|---|---|---|
-| [B01](TASK_B01_SVC.md) | `DifficultyConfig`: the parameters seam (§11) | 2.5h | A13 | TODO |
-| [B02](TASK_B02_SVC.md) | Lantern and composure generosity by difficulty | 2.5h | B01 | TODO |
-| [B03](TASK_B03_SVC.md) | Mercy knobs: restart point and journal auto-fill | 3h | B02 | TODO |
-| [B04](TASK_B04_SVC.md) | Hints: the Shadow's taunts double as hints on EASY | 2.5h | B02 | TODO |
-| [B05](TASK_B05_UI.md) | HARD: choices that expire on hesitation | 3h | B01 | TODO |
-| [B06](TASK_B06_TEST.md) | Difficulty behavior tests | 2.5h | B03, B04, B05 | TODO |
+| [B01](TASK_B01_SVC.md) | `DifficultyConfig`: the parameters seam (§11) | 2.5h | A13 | DONE |
+| [B02](TASK_B02_SVC.md) | Lantern and composure generosity by difficulty | 2.5h | B01 | DONE |
+| [B03](TASK_B03_SVC.md) | Mercy knobs: restart point and journal auto-fill | 3h | B02 | DONE |
+| [B04](TASK_B04_SVC.md) | Hints: the Shadow's taunts double as hints on EASY | 2.5h | B02 | DONE |
+| [B05](TASK_B05_UI.md) | HARD: choices that expire on hesitation | 3h | B01 | DONE |
+| [B06](TASK_B06_TEST.md) | Difficulty behavior tests | 2.5h | B03, B04, B05 | DONE |
 
 ## Slice C — Inventory (5)
 
 | Task | Title | Est. | Depends on | Status |
 |---|---|---|---|---|
-| [C01](TASK_C01_SVC.md) | Six-slot inventory in `RunState` | 3h | A13 | TODO |
-| [C02](TASK_C02_SVC.md) | Inventory requirements and effect verbs | 2.5h | C01 | TODO |
-| [C03](TASK_C03_SVC.md) | Item definitions as content (§3.3) | 3h | C02 | TODO |
-| [C04](TASK_C04_UI.md) | Inventory display and the drop-to-take flow | 3h | C02 | TODO |
-| [C05](TASK_C05_TEST.md) | Inventory tests | 2.5h | C03, C04 | TODO |
+| [C01](TASK_C01_SVC.md) | Six-slot inventory in `RunState` | 3h | A13 | DONE |
+| [C02](TASK_C02_SVC.md) | Inventory requirements and effect verbs | 2.5h | C01 | DONE |
+| [C03](TASK_C03_SVC.md) | Item definitions as content (§3.3) | 3h | C02 | DONE |
+| [C04](TASK_C04_UI.md) | Inventory display and the drop-to-take flow | 3h | C02 | DONE |
+| [C05](TASK_C05_TEST.md) | Inventory tests | 2.5h | C03, C04 | DONE |
 
 ## Slice D — Composure (5)
 
 | Task | Title | Est. | Depends on | Status |
 |---|---|---|---|---|
-| [D01](TASK_D01_SVC.md) | Composure stat, drains, and recovery | 3h | A13, B02 | TODO |
-| [D02](TASK_D02_SVC.md) | Unreliable narration, capped at 20% and always signalled | 3h | D01 | TODO |
-| [D03](TASK_D03_SVC.md) | Zero composure: the voluntary walk into the Shadow | 2.5h | D01 | TODO |
-| [D04](TASK_D04_UI.md) | Composure bar and the distortion tic | 3h | D02 | TODO |
-| [D05](TASK_D05_TEST.md) | Composure tests | 2.5h | D03, D04 | TODO |
+| [D01](TASK_D01_SVC.md) | Composure stat, drains, and recovery | 3h | A13, B02 | DONE |
+| [D02](TASK_D02_SVC.md) | Unreliable narration, capped at 20% and always signalled | 3h | D01 | DONE |
+| [D03](TASK_D03_SVC.md) | Zero composure: the voluntary walk into the Shadow | 2.5h | D01 | DONE |
+| [D04](TASK_D04_UI.md) | Composure bar and the distortion tic | 3h | D02 | DONE |
+| [D05](TASK_D05_TEST.md) | Composure tests | 2.5h | D03, D04 | DONE |
 
 ## Slice E — The Journal (4)
 
 | Task | Title | Est. | Depends on | Status |
 |---|---|---|---|---|
-| [E01](TASK_E01_SVC.md) | Journal model: rooms, deaths, Shadow lines | 2.5h | A13 | TODO |
-| [E02](TASK_E02_SVC.md) | Journal writes on room entry and on death | 3h | E01, A11 | TODO |
-| [E03](TASK_E03_UI.md) | Journal screen, keybound overlay | 3h | E01 | TODO |
-| [E04](TASK_E04_TEST.md) | Journal tests | 2.5h | E02, E03 | TODO |
+| [E01](TASK_E01_SVC.md) | Journal model: rooms, deaths, Shadow lines | 2.5h | A13 | DONE |
+| [E02](TASK_E02_SVC.md) | Journal writes on room entry and on death | 3h | E01, A11 | DONE |
+| [E03](TASK_E03_UI.md) | Journal screen, keybound overlay | 3h | E01 | DONE |
+| [E04](TASK_E04_TEST.md) | Journal tests | 2.5h | E02, E03 | DONE |
 
 ## Slice F — The House (8)
 
 | Task | Title | Est. | Depends on | Status |
 |---|---|---|---|---|
-| [F01](TASK_F01_SVC.md) | Multi-turn action support in the engine | 3.5h | A13 | TODO |
-| [F02](TASK_F02_SVC.md) | BLOOD KITCHEN as the trade room (§6) | 3h | D05, E04 | TODO |
-| [F03](TASK_F03_SVC.md) | OLD LIBRARY rework: the three-turn read | 3h | F01, C05 | TODO |
-| [F04](TASK_F04_SVC.md) | OLD YARD: rain, mud, the wall, the doghouse (§6) | 3h | D05, E04 | TODO |
-| [F05](TASK_F05_SVC.md) | THE HALL rework: hub, staircase, the yielding front door | 3h | F02, F03, F04 | TODO |
-| [F06](TASK_F06_SVC.md) | The front door key: three routes, two of them traps | 3h | F05 | TODO |
-| [F07](TASK_F07_SVC.md) | Lantern refills and the trade structure (§3.1) | 3h | F02 | TODO |
-| [F08](TASK_F08_TEST.md) | Full-house validation: prices, reachability, prose budget | 3h | F06, F07 | TODO |
+| [F01](TASK_F01_SVC.md) | Multi-turn action support in the engine | 3.5h | A13 | DONE |
+| [F02](TASK_F02_SVC.md) | BLOOD KITCHEN as the trade room (§6) | 3h | D05, E04 | DONE |
+| [F03](TASK_F03_SVC.md) | OLD LIBRARY rework: the three-turn read | 3h | F01, C05 | DONE |
+| [F04](TASK_F04_SVC.md) | OLD YARD: rain, mud, the wall, the doghouse (§6) | 3h | D05, E04 | DONE |
+| [F05](TASK_F05_SVC.md) | THE HALL rework: hub, staircase, the yielding front door | 3h | F02, F03, F04 | DONE |
+| [F06](TASK_F06_SVC.md) | The front door key: three routes, two of them traps | 3h | F05 | DONE |
+| [F07](TASK_F07_SVC.md) | Lantern refills and the trade structure (§3.1) | 3h | F02 | DONE |
+| [F08](TASK_F08_TEST.md) | Full-house validation: prices, reachability, prose budget | 3h | F06, F07 | DONE |
 
 ## Slice G — The Hell Dog (4)
 
 | Task | Title | Est. | Depends on | Status |
 |---|---|---|---|---|
-| [G01](TASK_G01_SVC.md) | The dog's rule: it only moves when you do (§6) | 3h | F08 | TODO |
-| [G02](TASK_G02_SVC.md) | The four solutions: slow, quick, meat, whistle (§4.3) | 3h | G01 | TODO |
-| [G03](TASK_G03_SVC.md) | The whistle needs the book, and the dog comes back later | 3h | G02 | TODO |
-| [G04](TASK_G04_TEST.md) | Hell Dog tests: four solutions, distinct outcomes | 2.5h | G03 | TODO |
+| [G01](TASK_G01_SVC.md) | The dog's rule: it only moves when you do (§6) | 3h | F08 | DONE |
+| [G02](TASK_G02_SVC.md) | The four solutions: slow, quick, meat, whistle (§4.3) | 3h | G01 | DONE |
+| [G03](TASK_G03_SVC.md) | The whistle needs the book, and the dog comes back later | 3h | G02 | DONE |
+| [G04](TASK_G04_TEST.md) | Hell Dog tests: four solutions, distinct outcomes | 2.5h | G03 | DONE |
 
 ## Slice H — Sound & Music Made Real (4)
 
 | Task | Title | Est. | Depends on | Status |
 |---|---|---|---|---|
-| [H01](TASK_H01_SVC.md) | The system bell as a horror channel (§5.2) | 3h | A13 | TODO |
-| [H02](TASK_H02_UI.md) | Visual rhythm: typewriter and pulsing tied to Music | 3h | A02 | TODO |
-| [H03](TASK_H03_UI.md) | Instant text and reduce-motion path (§5.3, §8) | 2.5h | H02 | TODO |
-| [H04](TASK_H04_TEST.md) | Presentation toggle tests | 2.5h | H01, H03 | TODO |
+| [H01](TASK_H01_SVC.md) | The system bell as a horror channel (§5.2) | 3h | A13 | DONE |
+| [H02](TASK_H02_UI.md) | Visual rhythm: typewriter and pulsing tied to Music | 3h | A02 | DONE |
+| [H03](TASK_H03_UI.md) | Instant text and reduce-motion path (§5.3, §8) | 2.5h | H02 | DONE |
+| [H04](TASK_H04_TEST.md) | Presentation toggle tests | 2.5h | H01, H03 | DONE |
 
 ## Slice I — Persistence & Mercy (5)
 
 | Task | Title | Est. | Depends on | Status |
 |---|---|---|---|---|
-| [I01](TASK_I01_SVC.md) | Save file: serialize the run | 3h | C05, D05, E04 | TODO |
-| [I02](TASK_I02_SVC.md) | Load, `CONTINUE`, and save-slot lifecycle | 3h | I01 | TODO |
-| [I03](TASK_I03_UI.md) | Death screen with the "what you learned" line (§9.2) | 3h | A11, E02 | TODO |
-| [I04](TASK_I04_UI.md) | Difficulty-gated "what you could have done" line (§9.2) | 2h | I03, B03 | TODO |
-| [I05](TASK_I05_TEST.md) | Save/load round-trip and death-screen tests | 2.5h | I02, I04 | TODO |
+| [I01](TASK_I01_SVC.md) | Save file: serialize the run | 3h | C05, D05, E04 | DONE |
+| [I02](TASK_I02_SVC.md) | Load, `CONTINUE`, and save-slot lifecycle | 3h | I01 | DONE |
+| [I03](TASK_I03_UI.md) | Death screen with the "what you learned" line (§9.2) | 3h | A11, E02 | DONE |
+| [I04](TASK_I04_UI.md) | Difficulty-gated "what you could have done" line (§9.2) | 2h | I03, B03 | DONE |
+| [I05](TASK_I05_TEST.md) | Save/load round-trip and death-screen tests | 2.5h | I02, I04 | DONE |
 
 ## Recommended Sequencing If Time Is Short
 

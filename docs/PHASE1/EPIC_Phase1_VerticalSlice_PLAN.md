@@ -1,12 +1,15 @@
 # EPIC: Phase 1 — Vertical Slice
 
-- **Status:** PLANNING
+> [!WARNING]
+> **SUPERSEDED BY PHASE 2:** This epic and its tasks were superseded and delivered in **[Phase 2 — The House](../PHASE2/EPIC_Phase2_TheHouse_PLAN.md)** (Slice A: Completing the Foundation). This file is retained as an archive of the Phase 1 planning baseline.
+
+- **Status:** SUPERSEDED (Delivered in Phase 2 Slice A)
 - **Blueprint:** `docs/SUGGEST.md` §12 "Phase 1 — Vertical Slice" (source), supported by §3.1, §3.5, §4.1, §4.2, §6, §7.1, §7.4, §11, §13
 - **Size class:** M
 - **Epic branch:** `feature/phase1-vertical-slice` (to be created from `develop`) — **not yet authorized**
 - **Owner:** Mojtaba zamani
 - **Planning date:** 2026-11-08
-- **Task folder:** `docs/PHASE1/`
+- **Task folder:** `docs/PHASE1/` (Superseded by `docs/PHASE2/`)
 
 ---
 

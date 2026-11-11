@@ -20,13 +20,16 @@ Every idea is tagged so you can skim:
 
 Honest snapshot, because good ideas start from an accurate map:
 
-- The **shell is real**: a working Textual app with a main menu, a settings screen, and JSON-persisted settings.
-- The **game is not wired in yet**: `START GAME` only prints a status line. There is no gameplay screen.
-- The **baseline story** is a linear chain of three `input()` prompts — HALL → (BLOOD KITCHEN *or* OLD LIBRARY) → OLD YARD → a HELL DOG → win or lose.
-- **`main_menu.py` and `game/settings_manager.py` are empty stubs** — the menu logic currently lives in `index.py`, and settings logic lives in `config.py`.
-- **Difficulty, Sound, and Music settings are stored but have zero effect** on anything.
-
-That last point is the biggest opportunity in the whole repo: *three settings already exist, and the game doesn't use any of them.*
+- **Phase 2 ("The House") is 100% BUILT and VERIFIED (263 passing tests across 55 atomic tasks):**
+  - **Foundation (Slice A):** `START GAME` launches a live, playable run on `GameScreen` with three fixed zones (scene, status, and footer). Lantern oil economy is quantized into a 10-cell bar with visit and action costs. All content is 100% declarative in `data/content.json` and validated by `game/content_schema.py`.
+  - **Difficulty System (Slice B):** Fully active across EASY, MEDIUM, and HARD without gating content. Regulates initial oil/composure, drain rates, restart checkpoints, hesitation choice expiration timers on HARD, and Shadow stuck hints on EASY.
+  - **Inventory System (Slice C):** 6-slot inventory model in `RunState` with 6 canonical items (§3.3), declarative requirement predicates (`needs_item`), item effect verbs, and interactive drop-to-take selection flow when the pack is full.
+  - **Composure & Sanity (Slice D):** Composure stat model tracking mental resilience. Narration distorts with subtle sensory tics capped at 20% when composure falls to or below 20%. Zero composure is strictly non-fatal, routing to the voluntary `The Threshold of Shadows` walk ending.
+  - **In-Game Journal (Slice E):** Dedicated modal overlay bound to `j` / `J` recording room discoveries, death causes and lessons, and Shadow whispers across the run.
+  - **The House Expansion (Slice F):** Full 4-room manor implementation: `The Hall` (4-way hub with stuck front door progression), `Blood Kitchen` (meat, cleaver, composure entry cost, oil canister trade), `Old Library` (3-consecutive-turn reading of The Book unlocking the dog's true name and front door key), and `Old Yard` (rain, mud, impassable perimeter wall, silver whistle, and kennel approach).
+  - **The Hell Dog (Slice G):** The hound follows its rule—it only moves when the player moves. Four distinct discoverable solutions: slow retreat, panicked sprint, meat distraction, and silver whistle pacification (which requires learning the dog's name from The Book).
+  - **Sound & Music (Slice H):** System bell sound cues for horror beats (`door_open`, `dog_chain`, `shadow_whisper`). Visual rhythm featuring smooth typewriter text reveal (any-key skip) and slow heartbeat border pulsing, fully controlled by the `Music` setting with an instant-text accessibility mode.
+  - **Persistence & Mercy (Slice I):** Atomic single-slot JSON save file persistence (`save_to_disk`, `load_from_disk`), enabling the `CONTINUE` option on the main menu. Auto-saves on quit, purges save file upon death or victory, and presents respectful 4-part death screens with single-sentence causes, lessons, and difficulty-gated hints on EASY.
 
 ---
 

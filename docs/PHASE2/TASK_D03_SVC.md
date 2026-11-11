@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase2_TheHouse_PLAN.md](EPIC_Phase2_TheHouse_PLAN.md)
 - Slice: D — Composure
 - Layer: SVC
-- Status: TODO
+- Status: DONE
 - Estimate: ~2.5h
 - Depends on: D01
 - Blocks: D05

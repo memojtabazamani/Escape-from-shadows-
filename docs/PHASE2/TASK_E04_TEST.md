@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase2_TheHouse_PLAN.md](EPIC_Phase2_TheHouse_PLAN.md)
 - Slice: E — The Journal
 - Layer: TEST
-- Status: TODO
+- Status: DONE
 - Estimate: ~2.5h
 - Depends on: E02, E03
 - Blocks: F02, F04, I01

@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase2_TheHouse_PLAN.md](EPIC_Phase2_TheHouse_PLAN.md)
 - Slice: F — The House
 - Layer: SVC
-- Status: TODO
+- Status: DONE
 - Estimate: ~3h
 - Depends on: D05, E04
 - Blocks: F05, F07

@@ -1,6 +1,8 @@
+from typing import Optional
 from textual.app import App
 
 from config import SettingsManager
+from game.state import RunState
 from screens.main_menu import MainMenuScreen
 
 
@@ -36,6 +38,7 @@ class TerminalGame(App):
     def __init__(self):
         super().__init__()
         self.config = SettingsManager()
+        self.active_run: Optional[RunState] = None
 
     def on_mount(self):
         self.push_screen(MainMenuScreen())

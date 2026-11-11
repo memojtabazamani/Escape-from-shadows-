@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase2_TheHouse_PLAN.md](EPIC_Phase2_TheHouse_PLAN.md)
 - Slice: B — Difficulty as a Real System
 - Layer: SVC
-- Status: TODO
+- Status: DONE
 - Estimate: ~3h
 - Depends on: B02
 - Blocks: B06, I04
@@ -62,14 +62,14 @@ Give difficulty its two mercy mechanisms: where a restart begins, and whether de
 - **Content-skip check:** on EASY, restart and confirm you did not arrive somewhere you had never been.
 
 ## Definition of Done / Acceptance Criteria
-- [ ] The config's mercy parameters exist and are read from config, never from a difficulty string
-- [ ] EASY restarts at a reachable recorded room; HARD restarts at the beginning; MEDIUM's behaviour is decided and recorded
-- [ ] Journal auto-fill is on for EASY and off for HARD, and the recorded text is the true cause
-- [ ] The auto-filled text and the death screen's cause come from one source
-- [ ] The restart point can never be a room the player has not visited
-- [ ] HARD does not remove the journal's ability to record by other means
-- [ ] The interaction with "Back to menu" and with I02's "nothing resumable" property is decided and recorded
-- [ ] `python -m pytest -v` passes, including the three pre-existing modules and A13's suite
+- [x] The config's mercy parameters exist and are read from config, never from a difficulty string
+- [x] EASY restarts at a reachable recorded room; HARD restarts at the beginning; MEDIUM's behaviour is decided and recorded
+- [x] Journal auto-fill is on for EASY and off for HARD, and the recorded text is the true cause
+- [x] The auto-filled text and the death screen's cause come from one source
+- [x] The restart point can never be a room the player has not visited
+- [x] HARD does not remove the journal's ability to record by other means
+- [x] The interaction with "Back to menu" and with I02's "nothing resumable" property is decided and recorded
+- [x] `python -m pytest -v` passes, including the three pre-existing modules and A13's suite
 
 ## Rollback / Undo
 Revert this task's commit; difficulty stops affecting mercy and the death screen's "Again" returns to a plain restart. I04 depends on the "what you could have done" gating this task establishes — revert as a group if I04 has landed.

@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase2_TheHouse_PLAN.md](EPIC_Phase2_TheHouse_PLAN.md)
 - Slice: C — Inventory
 - Layer: TEST
-- Status: TODO
+- Status: DONE
 - Estimate: ~2.5h
 - Depends on: C03, C04
 - Blocks: F03, I01

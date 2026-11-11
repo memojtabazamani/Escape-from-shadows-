@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase2_TheHouse_PLAN.md](EPIC_Phase2_TheHouse_PLAN.md)
 - Slice: B — Difficulty as a Real System
 - Layer: TEST
-- Status: TODO
+- Status: DONE
 - Estimate: ~2.5h
 - Depends on: B03, B04, B05
 - Blocks: None
@@ -57,15 +57,15 @@ Prove the two claims §5.1 makes and the epic's Definition of Done repeats: diff
 - **Negative check (worth doing once):** temporarily make EASY grant an extra item, confirm Invariant 1 fails loudly, then revert. A test that cannot fail is not a test, and this is the one assertion whose failure mode is invisible.
 
 ## Definition of Done / Acceptance Criteria
-- [ ] The three invariants are asserted, each by a named test
-- [ ] Reachability is computed by traversal from the content, not hardcoded
-- [ ] MEDIUM is proven identical to the pre-slice baseline
-- [ ] The no-content-identifier guard exists and passes
-- [ ] AC-24's status for this slice is asserted, with the `sound`/`music` handoff to H04 marked
-- [ ] The negative check was performed and Invariant 1 was observed failing before being reverted
-- [ ] No product file changed by this task
-- [ ] The suite is deterministic across repeated runs
-- [ ] `python -m pytest -v` passes, including the three pre-existing modules and A13's suite
+- [x] The three invariants are asserted, each by a named test
+- [x] Reachability is computed by traversal from the content, not hardcoded
+- [x] MEDIUM is proven identical to the pre-slice baseline
+- [x] The no-content-identifier guard exists and passes
+- [x] AC-24's status for this slice is asserted, with the `sound`/`music` handoff to H04 marked
+- [x] The negative check was performed and Invariant 1 was observed failing before being reverted
+- [x] No product file changed by this task
+- [x] The suite is deterministic across repeated runs
+- [x] `python -m pytest -v` passes, including the three pre-existing modules and A13's suite
 
 ## Rollback / Undo
 Revert this task's commit; difficulty continues to work but the fairness claim loses its mechanical guard, which reopens RISK-5. Slice B's AC-16 and AC-17 lose their evidence, so treat a revert as reopening the slice rather than as a clean undo.

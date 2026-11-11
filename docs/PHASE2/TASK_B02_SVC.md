@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase2_TheHouse_PLAN.md](EPIC_Phase2_TheHouse_PLAN.md)
 - Slice: B — Difficulty as a Real System
 - Layer: SVC
-- Status: TODO
+- Status: DONE
 - Estimate: ~2.5h
 - Depends on: B01
 - Blocks: B03, B04, D01
@@ -64,15 +64,15 @@ Make the two bars respond to difficulty: EASY gives more light and steadier nerv
 - **Fairness walk (the design check):** on HARD, ask of every requirement you encounter — *is there another way?* If any answer is no, a parameter is too tight and the value is wrong, not the design.
 
 ## Definition of Done / Acceptance Criteria
-- [ ] Both bars respond to difficulty and MEDIUM is byte-identical in behaviour to before
-- [ ] EASY ≥ MEDIUM ≥ HARD holds on both bars, asserted by test
-- [ ] Generosity is applied once at run start, never per-turn
-- [ ] Composure's parameter is defined with units, ready for D01 to consume
-- [ ] The zero-oil consequence exists on all three difficulties and no difficulty adds a failure mode
-- [ ] Every room, item and solution remains reachable on HARD — verified by playing, not by argument
-- [ ] The 0–100 clamp and `spend_lantern()`'s return value remain correct at low oil
-- [ ] A06's comments and behaviour are preserved
-- [ ] `python -m pytest -v` passes, including the three pre-existing modules and A13's suite
+- [x] Both bars respond to difficulty and MEDIUM is byte-identical in behaviour to before
+- [x] EASY ≥ MEDIUM ≥ HARD holds on both bars, asserted by test
+- [x] Generosity is applied once at run start, never per-turn
+- [x] Composure's parameter is defined with units, ready for D01 to consume
+- [x] The zero-oil consequence exists on all three difficulties and no difficulty adds a failure mode
+- [x] Every room, item and solution remains reachable on HARD — verified by playing, not by argument
+- [x] The 0–100 clamp and `spend_lantern()`'s return value remain correct at low oil
+- [x] A06's comments and behaviour are preserved
+- [x] `python -m pytest -v` passes, including the three pre-existing modules and A13's suite
 
 ## Rollback / Undo
 Revert this task's commit; all three difficulties behave identically again and B01's seam becomes inert, which is a safe state. D01 depends on the composure parameter's definition, so if D01 has landed, revert as a group or D01 will read a missing field.

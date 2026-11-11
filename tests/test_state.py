@@ -10,7 +10,7 @@ def test_fresh_defaults():
     assert state.lantern == 100
     assert state.turn_count == 0
     assert state.visited == set()
-    assert state.held_items == set()
+    assert state.held_items == []
     assert state.flags == set()
 
 

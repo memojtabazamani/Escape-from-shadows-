@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase2_TheHouse_PLAN.md](EPIC_Phase2_TheHouse_PLAN.md)
 - Slice: B — Difficulty as a Real System
 - Layer: UI
-- Status: TODO
+- Status: DONE
 - Estimate: ~3h
 - Depends on: B01
 - Blocks: B06
@@ -66,15 +66,15 @@ On HARD, make hesitation cost you: a choice held too long expires per its own co
 - **Fairness walk:** on HARD, note every expiry you trigger and confirm the run remained completable after each.
 
 ## Definition of Done / Acceptance Criteria
-- [ ] Expiry is turn-based, and the choice of measure is recorded with its justification
-- [ ] Expiring is a content field, validated by `content_schema.py`
-- [ ] Expiry occurs on HARD only
-- [ ] A visible cue precedes every expiry, in the footer-prompt zone per §7.1
-- [ ] The room is playable after any expiry and no expiry strands the run
-- [ ] Reachable rooms, items and solutions are identical on all three difficulties — asserted by test
-- [ ] Expiry is not routed through or labelled as a requirement failure
-- [ ] The tension with §8's pause-anywhere is recorded as a Phase 4 note
-- [ ] `python -m pytest -v` passes, including the three pre-existing modules and A13's suite
+- [x] Expiry is turn-based, and the choice of measure is recorded with its justification
+- [x] Expiring is a content field, validated by `content_schema.py`
+- [x] Expiry occurs on HARD only
+- [x] A visible cue precedes every expiry, in the footer-prompt zone per §7.1
+- [x] The room is playable after any expiry and no expiry strands the run
+- [x] Reachable rooms, items and solutions are identical on all three difficulties — asserted by test
+- [x] Expiry is not routed through or labelled as a requirement failure
+- [x] The tension with §8's pause-anywhere is recorded as a Phase 4 note
+- [x] `python -m pytest -v` passes, including the three pre-existing modules and A13's suite
 
 ## Rollback / Undo
 Revert this task's commit; HARD loses its time pressure and choices wait indefinitely, which is safe but leaves §5.1's HARD bullet only half-delivered. If the market schema extension was authored here and C02 has since landed, keep the schema change and revert only the screen logic.

@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase2_TheHouse_PLAN.md](EPIC_Phase2_TheHouse_PLAN.md)
 - Slice: G — The Hell Dog
 - Layer: SVC
-- Status: TODO
+- Status: DONE
 - Estimate: ~3h
 - Depends on: G01
 - Blocks: G03

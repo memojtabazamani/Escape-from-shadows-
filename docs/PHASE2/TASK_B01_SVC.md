@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase2_TheHouse_PLAN.md](EPIC_Phase2_TheHouse_PLAN.md)
 - Slice: B — Difficulty as a Real System
 - Layer: SVC
-- Status: TODO
+- Status: DONE
 - Estimate: ~2.5h
 - Depends on: A13
 - Blocks: B02, B05
@@ -61,15 +61,15 @@ Create the one place where difficulty is read: a `DifficultyConfig` that turns t
 - **Inertness check:** this is the task's sharpest test — if behaviour *did* change on EASY, the seam has leaked a decision that belongs to B02–B05.
 
 ## Definition of Done / Acceptance Criteria
-- [ ] `game/difficulty.py` exists with a frozen dataclass and a total factory
-- [ ] Every field is named for its effect and commented with GP-6 until confirmed
-- [ ] MEDIUM reproduces pre-slice behaviour exactly
-- [ ] Unknown or missing difficulty falls back to MEDIUM without raising
-- [ ] No field carries a room, item, or solution identifier
-- [ ] No behaviour is observable different on any setting yet — verified by playing all three
-- [ ] The module docstring states the §5.1 rule
-- [ ] No file outside `game/difficulty.py` and its test was modified
-- [ ] `python -m pytest` passes, including the three pre-existing modules
+- [x] `game/difficulty.py` exists with a frozen dataclass and a total factory
+- [x] Every field is named for its effect and commented with GP-6 until confirmed
+- [x] MEDIUM reproduces pre-slice behaviour exactly
+- [x] Unknown or missing difficulty falls back to MEDIUM without raising
+- [x] No field carries a room, item, or solution identifier
+- [x] No behaviour is observable different on any setting yet — verified by playing all three
+- [x] The module docstring states the §5.1 rule
+- [x] No file outside `game/difficulty.py` and its test was modified
+- [x] `python -m pytest` passes, including the three pre-existing modules
 
 ## Rollback / Undo
 Revert this task's commit; the module vanishes and nothing else changes, since nothing consumes it. B02, B05, and D01 depend on it, so revert as a group if any of them have landed.

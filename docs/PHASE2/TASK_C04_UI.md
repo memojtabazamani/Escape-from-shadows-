@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase2_TheHouse_PLAN.md](EPIC_Phase2_TheHouse_PLAN.md)
 - Slice: C — Inventory
 - Layer: UI
-- Status: TODO
+- Status: DONE
 - Estimate: ~3h
 - Depends on: C02
 - Blocks: C05

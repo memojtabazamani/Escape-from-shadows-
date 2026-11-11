@@ -4,13 +4,13 @@
 - Epic: [EPIC_Phase2_TheHouse_PLAN.md](EPIC_Phase2_TheHouse_PLAN.md)
 - Slice: A — Completing the Foundation
 - Layer: UI
-- Status: TODO
+- Status: DONE
 - Estimate: ~3h
 - Depends on: A01
 - Blocks: A03, H02
 - Covers: AC-22, AC-1
 - Suggested commit: `feat(ui): render rooms from content records`
-- Branch: feature/phase_2_the_house (per GP-3; Git Policy not yet confirmed)
+- Branch: feature/phase_2_the_house
 
 ## Objective
 Render a room's name and prose into A01's scene zone by reading a content record, proving §11's engine-versus-content split: no room text lives in `screens/`.
@@ -58,16 +58,16 @@ Render a room's name and prose into A01's scene zone by reading a content record
 - **Manual verification:** swap a room's `prose` in the content file, restart, and confirm the change appears with no code edit. That observation *is* AC-22.
 
 ## Definition of Done / Acceptance Criteria
-- [ ] A room's name and prose render from content, with no prose duplicated in `screens/`
-- [ ] Changing a room's prose in the content file changes the screen with no code edit
-- [ ] Content is loaded once, not per frame, and never inside `compose()`
-- [ ] An unknown room id fails loudly in development rather than rendering an empty scene
-- [ ] The current room id lives in the run state, not in a widget attribute
-- [ ] `python -m pytest` passes, including the three pre-existing modules
-- [ ] No file changed outside `screens/game.py` and the screen test module
+- [x] A room's name and prose render from content, with no prose duplicated in `screens/`
+- [x] Changing a room's prose in the content file changes the screen with no code edit
+- [x] Content is loaded once, not per frame, and never inside `compose()`
+- [x] An unknown room id fails loudly in development rather than rendering an empty scene
+- [x] The current room id lives in the run state, not in a widget attribute
+- [x] `python -m pytest` passes, including the three pre-existing modules
+- [x] No file changed outside `screens/game.py`, `game/state.py`, and the screen test module
 
 ## Rollback / Undo
 Revert this task's commit; the screen returns to A01's empty frame. A03 and H02 both depend on this rendering path, so reverting it alone breaks them — revert together.
 
 ## Execution Log
-<!-- Filled during execution: date, agent, branch, commit hash, notes, deviations -->
+- 2026-11-09: Implemented content record rendering in `screens/game.py`. `GameScreen` loads and validates content once upon initialization. Current room is tracked on `RunState.current_room`. Unknown room lookups raise `KeyError`. Added unit tests in `tests/test_game_screen.py` verifying rendering, error handling, and scanning `screens/` to guarantee no hardcoded prose. All 32 tests pass.

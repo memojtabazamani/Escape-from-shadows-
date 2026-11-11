@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase2_TheHouse_PLAN.md](EPIC_Phase2_TheHouse_PLAN.md)
 - Slice: C — Inventory
 - Layer: SVC
-- Status: TODO
+- Status: DONE
 - Estimate: ~3h
 - Depends on: A13
 - Blocks: C02
@@ -64,15 +64,15 @@ Replace `RunState`'s uncapped `held_items` set with a six-slot inventory that re
 - **Capacity audit:** confirm the content set never *needs* more than six simultaneously — if it does, report it and propose which item is redundant, rather than raising ASM-5's cap.
 
 ## Definition of Done / Acceptance Criteria
-- [ ] `held_items` is replaced by a slot-capped structure with stable ordering, and the choice is recorded
-- [ ] A sixth item fits; a seventh is refused with a truthful reason and no silent eviction
-- [ ] Drop frees exactly one slot
-- [ ] `snapshot()`/`restore()` handle the new shape and tolerate a pre-slice snapshot, reporting drops
-- [ ] `has_item` semantics are unchanged, so `game/effects.py` needs no modification
-- [ ] The `restore()` path never raises on a well-formed but older snapshot
-- [ ] The docstring states the cap and cites §3.3's reason
-- [ ] Existing state tests are updated in shape, not weakened in intent
-- [ ] `python -m pytest -v` passes, including A13's suite
+- [x] `held_items` is replaced by a slot-capped structure with stable ordering, and the choice is recorded
+- [x] A sixth item fits; a seventh is refused with a truthful reason and no silent eviction
+- [x] Drop frees exactly one slot
+- [x] `snapshot()`/`restore()` handle the new shape and tolerate a pre-slice snapshot, reporting drops
+- [x] `has_item` semantics are unchanged, so `game/effects.py` needs no modification
+- [x] The `restore()` path never raises on a well-formed but older snapshot
+- [x] The docstring states the cap and cites §3.3's reason
+- [x] Existing state tests are updated in shape, not weakened in intent
+- [x] `python -m pytest -v` passes, including A13's suite
 
 ## Rollback / Undo
 Revert this task's commit; the inventory returns to an uncapped set and AC-6 is unmet. C02, C03, C04 and C05 all build on this model, so revert the whole slice together — a partially reverted slice would leave content referencing operations that no longer exist.

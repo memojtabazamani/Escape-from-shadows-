@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase2_TheHouse_PLAN.md](EPIC_Phase2_TheHouse_PLAN.md)
 - Slice: A — Completing the Foundation
 - Layer: SVC
-- Status: TODO
+- Status: DONE
 - Estimate: ~2.5h
 - Depends on: A08, A09
 - Blocks: A11
@@ -36,11 +36,11 @@ Make THE HALL's front door yield once the player holds the BOOK's knowledge, pro
 - **Voice:** the ending is quiet. §12's Phase 1 does not ask for spectacle, and §7.3 reserves ASCII art for three moments, none of which this is.
 
 ## Preconditions
-- [ ] A08 DONE — the knowledge flag exists and its name is recorded
-- [ ] A09 DONE — the death path exists, so the run has both terminal states
-- [ ] A07 DONE — the front door choice exists and refuses
-- [ ] A03 DONE — `has_flag` requirements render as informative refusals
-- [ ] `python -m pytest` green (baseline recorded)
+- [x] A08 DONE — the knowledge flag exists and its name is recorded
+- [x] A09 DONE — the death path exists, so the run has both terminal states
+- [x] A07 DONE — the front door choice exists and refuses
+- [x] A03 DONE — `has_flag` requirements render as informative refusals
+- [x] `python -m pytest` green (baseline recorded)
 
 ## Actionable Steps
 1. Read A08's recorded flag name and add a `has_flag` requirement to the front-door choice.
@@ -62,17 +62,24 @@ Make THE HALL's front door yield once the player holds the BOOK's knowledge, pro
 - **Echo check (pillar 3):** the second visit to the hall should feel different from the first. If it does not, the ending is gated but not *earned* — add a line of prose that acknowledges the return.
 
 ## Definition of Done / Acceptance Criteria
-- [ ] The front door refuses without the flag, naming the reason, and moves nobody
-- [ ] The front door yields with the flag, reaching a terminal ending state
-- [ ] The gate uses the existing `has_flag` predicate; no new engine predicate was added
-- [ ] Both terminal states are independently reachable
-- [ ] The run's post-ending behaviour is decided and recorded as data
-- [ ] Ending prose is within the ≈ 20-line budget
-- [ ] The second visit to the hall reads differently from the first
-- [ ] `python -m pytest` passes, including the three pre-existing modules
+- [x] The front door refuses without the flag, naming the reason, and moves nobody
+- [x] The front door yields with the flag, reaching a terminal ending state
+- [x] The gate uses the existing `has_flag` predicate; no new engine predicate was added
+- [x] Both terminal states are independently reachable
+- [x] The run's post-ending behaviour is decided and recorded as data
+- [x] Ending prose is within the ≈ 20-line budget
+- [x] The second visit to the hall reads differently from the first
+- [x] `python -m pytest` passes, including the three pre-existing modules
 
 ## Rollback / Undo
 Revert this task's commit; the front door refuses forever and the slice has no win state, leaving AC-1's "playable end to end" unsatisfied. Revert A09 alongside it or the slice has a death with no counterpart.
 
 ## Execution Log
-<!-- Filled during execution: date, agent, branch, commit hash, notes, deviations; record the post-ending decision here -->
+- **Date:** 2026-11-09
+- **Agent:** Antigravity
+- **Branch:** feature/phase_2_the_house (No git commit per user instruction)
+- **Post-Ending Decision:** The escape ending leads to terminal room `front_door_escape` (`tier: "ending"` with 0 choices). The post-ending presentation (wired in A11) offers two branches: `[R] Restart Run` (starts fresh run) and `[M] Main Menu` (pops to title screen).
+- **Knowledge Gate:** `hall_front_door` requires `has_flag: "knows_exit"`. Without the flag, it refuses informatively (`requires flag 'knows_exit'`) without moving the player. With the flag, it yields to `front_door_escape`.
+- **Echo Prose (Pillar 3):** Authored `revisit_prose` in `hall` recognizing the lectern's secret and revealing the concealed latch along the iron frame. `GameScreen.render_room` checks `is_revisit` and renders `revisit_prose` when revisiting.
+- **Ending Room:** Authored `front_door_escape` ("The Threshold of Night") in §2.3's quiet standard win register (3 lines, well within <= 20 line budget).
+- **Verification:** Unit tests and async pilot tests in `tests/test_content_house.py` verify front door refusal/grant, independent reachability of both terminal states, line budget, and second-visit echo prose. 68 tests passing green.

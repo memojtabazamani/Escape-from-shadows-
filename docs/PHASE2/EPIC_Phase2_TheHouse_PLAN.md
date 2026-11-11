@@ -98,84 +98,84 @@ The phase's own success test is behavioural: **a player who dies can say why the
 Finishes the Phase 1 loop (Phase 1's Slices B–F). Mirrors `docs/PHASE1/TASK_B01`–`F01`; this folder is the live record.
 
 - [x] `TASK_A01_UI` — Gameplay screen skeleton with the three zones (~3h) — depends GP-2, GP-3
-- [ ] `TASK_A02_UI` — Render a room from content records (~3h) — depends A01
-- [ ] `TASK_A03_UI` — Selectable choices, requirement gating, room transition (~3h) — depends A02
-- [ ] `TASK_A04_UI` — Status zone: lantern bar, turn counter, low-oil warning (~2.5h) — depends A01
-- [ ] `TASK_A05_SVC` — Lantern drain rules (~3h) — depends A03
-- [ ] `TASK_A06_SVC` — Zero-oil condition and its honest consequence (~2.5h) — depends A05
-- [ ] `TASK_A07_SVC` — THE HALL content: hub, two doorways, the stuck front door (~3h) — depends A06, A04
-- [ ] `TASK_A08_SVC` — OLD LIBRARY content and the BOOK's costly read (~3h) — depends A03
-- [ ] `TASK_A09_SVC` — One honest death at the left doorway (~2.5h) — depends A07
-- [ ] `TASK_A10_SVC` — One honest ending at the front door (~2.5h) — depends A08, A09
-- [ ] `TASK_A11_UI` — Death screen and ending screen (~3.5h) — depends A09, A10
-- [ ] `TASK_A12_UI` — Wire `START GAME` and the run lifecycle (~2h) — depends A11
-- [ ] `TASK_A13_TEST` — Vertical-slice regression suite and the first-stranger playtest (~3h) — depends A12
-- [ ] `TASK_A14_DOCS` — Re-sync `AGENTS.md`, `README.md`, `GENERAL_DOC.md`, `SUGGEST.md` §0 (~1.5h) — depends A13
+- [x] `TASK_A02_UI` — Render a room from content records (~3h) — depends A01
+- [x] `TASK_A03_UI` — Selectable choices, requirement gating, room transition (~3h) — depends A02
+- [x] `TASK_A04_UI` — Status zone: lantern bar, turn counter, low-oil warning (~2.5h) — depends A01
+- [x] `TASK_A05_SVC` — Lantern drain rules (~3h) — depends A03
+- [x] `TASK_A06_SVC` — Zero-oil condition and its honest consequence (~2.5h) — depends A05
+- [x] `TASK_A07_SVC` — THE HALL content: hub, two doorways, the stuck front door (~3h) — depends A06, A04
+- [x] `TASK_A08_SVC` — OLD LIBRARY content and the BOOK's costly read (~3h) — depends A03
+- [x] `TASK_A09_SVC` — One honest death at the left doorway (~2.5h) — depends A07
+- [x] `TASK_A10_SVC` — One honest ending at the front door (~2.5h) — depends A08, A09
+- [x] `TASK_A11_UI` — Death screen and ending screen (~3.5h) — depends A09, A10
+- [x] `TASK_A12_UI` — Wire `START GAME` and the run lifecycle (~2h) — depends A11
+- [x] `TASK_A13_TEST` — Vertical-slice regression suite and the first-stranger playtest (~3h) — depends A12
+- [x] `TASK_A14_DOCS` — Re-sync `AGENTS.md`, `README.md`, `GENERAL_DOC.md`, `SUGGEST.md` §0 (~1.5h) — depends A13
 
 ### Slice B — Difficulty as a Real System — 6 tasks, ~16h
 
-- [ ] `TASK_B01_SVC` — `DifficultyConfig`: the parameters seam (§11) (~2.5h) — depends A13
-- [ ] `TASK_B02_SVC` — Lantern and composure generosity by difficulty (~2.5h) — depends B01
-- [ ] `TASK_B03_SVC` — Mercy knobs: restart point and journal auto-fill (~3h) — depends B02
-- [ ] `TASK_B04_SVC` — Hints: the Shadow's taunts double as hints on EASY (~2.5h) — depends B02
-- [ ] `TASK_B05_UI` — HARD: choices that expire on hesitation (~3h) — depends B01
-- [ ] `TASK_B06_TEST` — Difficulty behavior tests (~2.5h) — depends B03, B04, B05
+- [x] `TASK_B01_SVC` — `DifficultyConfig`: the parameters seam (§11) (~2.5h) — depends A13
+- [x] `TASK_B02_SVC` — Lantern and composure generosity by difficulty (~2.5h) — depends B01
+- [x] `TASK_B03_SVC` — Mercy knobs: restart point and journal auto-fill (~3h) — depends B02
+- [x] `TASK_B04_SVC` — Hints: the Shadow's taunts double as hints on EASY (~2.5h) — depends B02
+- [x] `TASK_B05_UI` — HARD: choices that expire on hesitation (~3h) — depends B01
+- [x] `TASK_B06_TEST` — Difficulty behavior tests (~2.5h) — depends B03, B04, B05
 
 ### Slice C — Inventory — 5 tasks, ~14h
 
-- [ ] `TASK_C01_SVC` — Six-slot inventory in `RunState` (~3h) — depends A13
-- [ ] `TASK_C02_SVC` — Inventory requirements and effect verbs (~2.5h) — depends C01
-- [ ] `TASK_C03_SVC` — Item definitions as content (§3.3) (~3h) — depends C02
-- [ ] `TASK_C04_UI` — Inventory display and the drop-to-take flow (~3h) — depends C02
-- [ ] `TASK_C05_TEST` — Inventory tests (~2.5h) — depends C03, C04
+- [x] `TASK_C01_SVC` — Six-slot inventory in `RunState` (~3h) — depends A13
+- [x] `TASK_C02_SVC` — Inventory requirements and effect verbs (~2.5h) — depends C01
+- [x] `TASK_C03_SVC` — Item definitions as content (§3.3) (~3h) — depends C02
+- [x] `TASK_C04_UI` — Inventory display and the drop-to-take flow (~3h) — depends C02
+- [x] `TASK_C05_TEST` — Inventory tests (~2.5h) — depends C03, C04
 
 ### Slice D — Composure — 5 tasks, ~14h
 
-- [ ] `TASK_D01_SVC` — Composure stat, drains, and recovery (~3h) — depends A13, B02
-- [ ] `TASK_D02_SVC` — Unreliable narration, capped at 20% and always signalled (~3h) — depends D01
-- [ ] `TASK_D03_SVC` — Zero composure: the voluntary walk into the Shadow (~2.5h) — depends D01
-- [ ] `TASK_D04_UI` — Composure bar and the distortion tic (~3h) — depends D02
-- [ ] `TASK_D05_TEST` — Composure tests (~2.5h) — depends D03, D04
+- [x] `TASK_D01_SVC` — Composure stat, drains, and recovery (~3h) — depends A13, B02
+- [x] `TASK_D02_SVC` — Unreliable narration, capped at 20% and always signalled (~3h) — depends D01
+- [x] `TASK_D03_SVC` — Zero composure: the voluntary walk into the Shadow (~2.5h) — depends D01
+- [x] `TASK_D04_UI` — Composure bar and the distortion tic (~3h) — depends D02
+- [x] `TASK_D05_TEST` — Composure tests (~2.5h) — depends D03, D04
 
 ### Slice E — The Journal — 4 tasks, ~11h
 
-- [ ] `TASK_E01_SVC` — Journal model: rooms, deaths, Shadow lines (~2.5h) — depends A13
-- [ ] `TASK_E02_SVC` — Journal writes on room entry and on death (~3h) — depends E01, A11
-- [ ] `TASK_E03_UI` — Journal screen, keybound overlay (~3h) — depends E01
-- [ ] `TASK_E04_TEST` — Journal tests (~2.5h) — depends E02, E03
+- [x] `TASK_E01_SVC` — Journal model: rooms, deaths, Shadow lines (~2.5h) — depends A13
+- [x] `TASK_E02_SVC` — Journal writes on room entry and on death (~3h) — depends E01, A11
+- [x] `TASK_E03_UI` — Journal screen, keybound overlay (~3h) — depends E01
+- [x] `TASK_E04_TEST` — Journal tests (~2.5h) — depends E02, E03
 
-### Slice F — The House — 8 tasks, ~24.5h
+### Slice F — The House — 8 tasks, ~24.5h (DONE)
 
-- [ ] `TASK_F01_SVC` — Multi-turn action support in the engine (~3.5h) — depends A13
-- [ ] `TASK_F02_SVC` — BLOOD KITCHEN as the trade room (§6) (~3h) — depends D05, E04
-- [ ] `TASK_F03_SVC` — OLD LIBRARY rework: the three-turn read (~3h) — depends F01, C05
-- [ ] `TASK_F04_SVC` — OLD YARD: rain, mud, the wall, the doghouse (§6) (~3h) — depends D05, E04
-- [ ] `TASK_F05_SVC` — THE HALL rework: hub, staircase, the yielding front door (~3h) — depends F02, F03, F04
-- [ ] `TASK_F06_SVC` — The front door key: three routes, two of them traps (~3h) — depends F05
-- [ ] `TASK_F07_SVC` — Lantern refills and the trade structure (§3.1) (~3h) — depends F02
-- [ ] `TASK_F08_TEST` — Full-house validation: prices, reachability, prose budget (~3h) — depends F06, F07
+- [x] `TASK_F01_SVC` — Multi-turn action support in the engine (~3.5h) — depends A13
+- [x] `TASK_F02_SVC` — BLOOD KITCHEN as the trade room (§6) (~3h) — depends D05, E04
+- [x] `TASK_F03_SVC` — OLD LIBRARY rework: the three-turn read (~3h) — depends F01, C05
+- [x] `TASK_F04_SVC` — OLD YARD: rain, mud, the wall, the doghouse (§6) (~3h) — depends D05, E04
+- [x] `TASK_F05_SVC` — THE HALL rework: hub, staircase, the yielding front door (~3h) — depends F02, F03, F04
+- [x] `TASK_F06_SVC` — The front door key: three routes, two of them traps (~3h) — depends F05
+- [x] `TASK_F07_SVC` — Lantern refills and the trade structure (§3.1) (~3h) — depends F02
+- [x] `TASK_F08_TEST` — Full-house validation: prices, reachability, prose budget (~3h) — depends F06, F07
 
-### Slice G — The Hell Dog — 4 tasks, ~11.5h
+### Slice G — The Hell Dog — 4 tasks, ~11.5h (DONE)
 
-- [ ] `TASK_G01_SVC` — The dog's rule: it only moves when you do (§6) (~3h) — depends F08
-- [ ] `TASK_G02_SVC` — The four solutions: slow, quick, meat, whistle (§4.3) (~3h) — depends G01
-- [ ] `TASK_G03_SVC` — The whistle needs the book, and the dog comes back later (~3h) — depends G02
-- [ ] `TASK_G04_TEST` — Hell Dog tests: four solutions, distinct outcomes (~2.5h) — depends G03
+- [x] `TASK_G01_SVC` — The dog's rule: it only moves when you do (§6) (~3h) — depends F08
+- [x] `TASK_G02_SVC` — The four solutions: slow, quick, meat, whistle (§4.3) (~3h) — depends G01
+- [x] `TASK_G03_SVC` — The whistle needs the book, and the dog comes back later (~3h) — depends G02
+- [x] `TASK_G04_TEST` — Hell Dog tests: four solutions, distinct outcomes (~2.5h) — depends G03
 
-### Slice H — Sound & Music Made Real — 4 tasks, ~11h
+### Slice H — Sound & Music Made Real — 4 tasks, ~11h (DONE)
 
-- [ ] `TASK_H01_SVC` — The system bell as a horror channel (§5.2) (~3h) — depends A13
-- [ ] `TASK_H02_UI` — Visual rhythm: typewriter and pulsing tied to Music (§5.3, §7.2) (~3h) — depends A02
-- [ ] `TASK_H03_UI` — Instant text and reduce-motion path (§5.3, §8) (~2.5h) — depends H02
-- [ ] `TASK_H04_TEST` — Presentation toggle tests (~2.5h) — depends H01, H03
+- [x] `TASK_H01_SVC` — The system bell as a horror channel (§5.2) (~3h) — depends A13
+- [x] `TASK_H02_UI` — Visual rhythm: typewriter and pulsing tied to Music (§5.3, §7.2) (~3h) — depends A02
+- [x] `TASK_H03_UI` — Instant text and reduce-motion path (§5.3, §8) (~2.5h) — depends H02
+- [x] `TASK_H04_TEST` — Presentation toggle tests (~2.5h) — depends H01, H03
 
-### Slice I — Persistence & Mercy — 5 tasks, ~13.5h
+### Slice I — Persistence & Mercy — 5 tasks, ~13.5h (DONE)
 
-- [ ] `TASK_I01_SVC` — Save file: serialize the run (~3h) — depends C05, D05, E04
-- [ ] `TASK_I02_SVC` — Load, `CONTINUE`, and save-slot lifecycle (~3h) — depends I01
-- [ ] `TASK_I03_UI` — Death screen with the "what you learned" line (§9.2) (~3h) — depends A11, E02
-- [ ] `TASK_I04_UI` — Difficulty-gated "what you could have done" line (§9.2) (~2h) — depends I03, B03
-- [ ] `TASK_I05_TEST` — Save/load round-trip and death-screen tests (~2.5h) — depends I02, I04
+- [x] `TASK_I01_SVC` — Save file: serialize the run (~3h) — depends C05, D05, E04
+- [x] `TASK_I02_SVC` — Load, `CONTINUE`, and save-slot lifecycle (~3h) — depends I01
+- [x] `TASK_I03_UI` — Death screen with the "what you learned" line (§9.2) (~3h) — depends A11, E02
+- [x] `TASK_I04_UI` — Difficulty-gated "what you could have done" line (§9.2) (~2h) — depends I03, B03
+- [x] `TASK_I05_TEST` — Save/load round-trip and death-screen tests (~2.5h) — depends I02, I04
 
 **Totals: 55 tasks, ~153.5 h**
 
@@ -301,21 +301,21 @@ AC-1..AC-6 come from §12's Phase 2 bullets; AC-7..AC-24 are derived from the so
 
 ## Definition of Done (Epic level)
 
-- [ ] All 55 tasks DONE, or explicitly deferred with owner approval
-- [ ] Slice A complete: the Phase 1 vertical slice exists and its playtest passes
-- [ ] All ACs (AC-1..AC-24) verified **by playing the game**, not by inspection
-- [ ] All four rooms playable, each fitting one screen, each with a real cost
-- [ ] The Hell Dog has four distinct, discoverable solutions, and the whistle route requires the book
-- [ ] A player who dies can say *why* they died and what they'd do differently (pillar 2)
-- [ ] Difficulty changes outcomes observably on all three settings, without gating any content
-- [ ] Sound and Music each produce an observable difference with the toggle on and off
-- [ ] The game is fully playable and complete with **both** toggles off
-- [ ] A run survives quitting and relaunching
-- [ ] The content-only proof still holds: a new room is added by editing content alone (AC-22)
-- [ ] No hardcoded room prose remains in `screens/`
-- [ ] `AGENTS.md`, `README.md`, `docs/GENERAL_DOC.md`, and `docs/SUGGEST.md` §0 describe the real state
-- [ ] `docs/PHASE1/` no longer contradicts this plan (GP-4)
-- [ ] Rollback documented: reverting the epic branch returns the project to the post-Slice-A state
+- [x] All 55 tasks DONE, or explicitly deferred with owner approval
+- [x] Slice A complete: the Phase 1 vertical slice exists and its playtest passes
+- [x] All ACs (AC-1..AC-24) verified **by playing the game**, not by inspection
+- [x] All four rooms playable, each fitting one screen, each with a real cost
+- [x] The Hell Dog has four distinct, discoverable solutions, and the whistle route requires the book
+- [x] A player who dies can say *why* they died and what they'd do differently (pillar 2)
+- [x] Difficulty changes outcomes observably on all three settings, without gating any content
+- [x] Sound and Music each produce an observable difference with the toggle on and off
+- [x] The game is fully playable and complete with **both** toggles off
+- [x] A run survives quitting and relaunching
+- [x] The content-only proof still holds: a new room is added by editing content alone (AC-22)
+- [x] No hardcoded room prose remains in `screens/`
+- [x] `AGENTS.md`, `README.md`, `docs/GENERAL_DOC.md`, and `docs/SUGGEST.md` §0 describe the real state
+- [x] `docs/PHASE1/` no longer contradicts this plan (GP-4)
+- [x] Rollback documented: reverting the epic branch returns the project to the post-Slice-A state
 - [ ] Epic branch merged per project policy **after explicit approval**
 
 ---

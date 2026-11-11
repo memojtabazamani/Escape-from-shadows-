@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase2_TheHouse_PLAN.md](EPIC_Phase2_TheHouse_PLAN.md)
 - Slice: F — The House
 - Layer: TEST
-- Status: TODO
+- Status: DONE
 - Estimate: ~3h
 - Depends on: F06, F07
 - Blocks: G01

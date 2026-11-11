@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase2_TheHouse_PLAN.md](EPIC_Phase2_TheHouse_PLAN.md)
 - Slice: A — Completing the Foundation
 - Layer: UI
-- Status: TODO
+- Status: DONE
 - Estimate: ~3.5h
 - Depends on: A09, A10
 - Blocks: A12, E02, I03
@@ -36,11 +36,11 @@ Give the run's two terminal states real screens: a death that states its cause a
 - **Voice:** the death screen is a lesson, not a punishment. It should feel like the house explaining itself, briefly.
 
 ## Preconditions
-- [ ] A09 DONE — the death produces a result carrying a one-sentence cause
-- [ ] A10 DONE — the ending produces a terminal result
-- [ ] A03 DONE — the death-tier placeholder exists and is the thing being replaced
-- [ ] A01's frame and CSS vocabulary are available to reuse
-- [ ] `python -m pytest` green (baseline recorded)
+- [x] A09 DONE — the death produces a result carrying a one-sentence cause
+- [x] A10 DONE — the ending produces a terminal result
+- [x] A03 DONE — the death-tier placeholder exists and is the thing being replaced
+- [x] A01's frame and CSS vocabulary are available to reuse
+- [x] `python -m pytest` green (baseline recorded)
 
 ## Actionable Steps
 1. Read `ChoiceResult` and the two terminal results A09 and A10 produce; note exactly which field carries the cause.
@@ -64,18 +64,34 @@ Give the run's two terminal states real screens: a death that states its cause a
 - **Readability check:** confirm both screens fit one terminal without scrolling at a narrow width.
 
 ## Definition of Done / Acceptance Criteria
-- [ ] The death screen states the cause verbatim from structured data, not from screen-authored prose
-- [ ] The death screen offers both "Again" and "Back to menu", and both work
-- [ ] "Back to menu" after a death leaves nothing resumable
-- [ ] The ending screen renders its prose and closes the run cleanly
-- [ ] The death screen contains no ASCII art
-- [ ] The red-styling question is decided and recorded
-- [ ] Both screens fit one terminal at a narrow width
-- [ ] The frame accommodates I03's and I04's lines without restructuring
-- [ ] `python -m pytest` passes, including the three pre-existing modules
+- [x] The death screen states the cause verbatim from structured data, not from screen-authored prose
+- [x] The death screen offers both "Again" and "Back to menu", and both work
+- [x] "Back to menu" after a death leaves nothing resumable
+- [x] The ending screen renders its prose and closes the run cleanly
+- [x] The death screen contains no ASCII art
+- [x] The red-styling question is decided and recorded
+- [x] Both screens fit one terminal at a narrow width
+- [x] The frame accommodates I03's and I04's lines without restructuring
+- [x] `python -m pytest` passes, including the three pre-existing modules
 
 ## Rollback / Undo
 Revert this task's commit; A03's placeholder routing returns and terminal states are unreadable but non-crashing. A12, E02 and I03 all depend on these screens existing — revert as a group.
 
 ## Execution Log
-<!-- Filled during execution: date, agent, branch, commit hash, notes, deviations; record the red-styling decision and the frame's reserved regions here -->
+- **Date:** 2026-11-09
+- **Agent:** Antigravity
+- **Branch:** feature/phase_2_the_house (No git commit per user instruction)
+- **Red-Styling Decision:** Red (`#e63946`) is strictly reserved for the presence of the Shadow (§7.4). On `DeathScreen`, red title styling applies only when `"shadow"` is explicitly mentioned in the cause (e.g. zero-oil darkness consumption). Non-shadow deaths (e.g. threshold butcher) render in cold ash (`#b0b0b0`).
+- **Reserved Frame Regions:**
+  - `#death-cause`: renders structured one-sentence cause verbatim.
+  - `#death-learned`: placeholder region for I03's "what you learned".
+  - `#death-could-have-done`: placeholder region for I04's greyed-out hint.
+  - `#death-menu`: keyboard-driven actions ("AGAIN", "BACK TO MENU").
+- **Screens Created:**
+  - `screens/death.py` (`DeathScreen`): No ASCII art (§7.3), structured cause verbatim, clears resumable run on menu exit.
+  - `screens/ending.py` (`EndingScreen`): Displays room name and ending prose verbatim, provides "AGAIN" and "BACK TO MENU", subtle escape marker.
+- **GameScreen Wiring:**
+  - Replaced placeholder routing in `screens/game.py`: terminal rooms/choices of tier `death` (and zero-oil states) push `DeathScreen`. Terminal rooms/choices of tier `ending` push `EndingScreen`.
+- **Verification:**
+  - Created `tests/test_terminal_screens.py` covering verbatim cause, navigation, cleanup on menu exit, ASCII art prohibition, red reservation, and live `GameScreen` routing.
+  - 77 tests passing green.

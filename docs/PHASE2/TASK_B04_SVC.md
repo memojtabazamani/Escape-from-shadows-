@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase2_TheHouse_PLAN.md](EPIC_Phase2_TheHouse_PLAN.md)
 - Slice: B — Difficulty as a Real System
 - Layer: SVC
-- Status: TODO
+- Status: DONE
 - Estimate: ~2.5h
 - Depends on: B02
 - Blocks: B06
@@ -65,16 +65,16 @@ Make EASY give information: when the player is stuck, the Shadow speaks, and wha
 - **Usability check (the real one):** hand a hint to someone who is stuck and watch whether they act on it. A hint that requires interpretation has failed, whichever pillar it cites.
 
 ## Definition of Done / Acceptance Criteria
-- [ ] A stuck trigger exists, is recorded, and cannot fire during a competent run
-- [ ] Hints are content data keyed by room or condition, not prose in a screen
-- [ ] Hints fire on EASY only, asserted across all three difficulties
-- [ ] No hint is delivered twice in a run
-- [ ] No hint references content the player has not encountered
-- [ ] Each hint is actionable — verified by observation, not by reading
-- [ ] Delivered lines are recorded in the store E02 uses for the journal
-- [ ] The rendering style for the Shadow's lines is decided and consistent with §7.4
-- [ ] No Shadow entity, pursuit rule, or presence mechanic was introduced
-- [ ] `python -m pytest -v` passes, including the three pre-existing modules and A13's suite
+- [x] A stuck trigger exists, is recorded, and cannot fire during a competent run
+- [x] Hints are content data keyed by room or condition, not prose in a screen
+- [x] Hints fire on EASY only, asserted across all three difficulties
+- [x] No hint is delivered twice in a run
+- [x] No hint references content the player has not encountered
+- [x] Each hint is actionable — verified by observation, not by reading
+- [x] Delivered lines are recorded in the store E02 uses for the journal
+- [x] The rendering style for the Shadow's lines is decided and consistent with §7.4
+- [x] No Shadow entity, pursuit rule, or presence mechanic was introduced
+- [x] `python -m pytest -v` passes, including the three pre-existing modules and A13's suite
 
 ## Rollback / Undo
 Revert this task's commit; EASY loses its information advantage and difficulty differs only in generosity, which is a coherent state but leaves AC-16 half-satisfied. B06 depends on this task's behaviour, so revert as a group.

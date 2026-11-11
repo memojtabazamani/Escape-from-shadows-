@@ -4,13 +4,13 @@
 - Epic: [EPIC_Phase2_TheHouse_PLAN.md](EPIC_Phase2_TheHouse_PLAN.md)
 - Slice: A — Completing the Foundation
 - Layer: SVC
-- Status: TODO
+- Status: DONE
 - Estimate: ~3h
 - Depends on: A06, A04
 - Blocks: A09
 - Covers: AC-1, AC-2, AC-23
 - Suggested commit: `content(hall): build the hall as a hub with two doorways and a stuck front door`
-- Branch: feature/phase_2_the_house (per GP-3; Git Policy not yet confirmed)
+- Branch: feature/phase_2_the_house
 
 ## Objective
 Author THE HALL as a hub rather than a corridor: two doorways, a staircase up, and a front door that is visibly, insultingly unlocked-but-stuck.
@@ -63,18 +63,20 @@ Author THE HALL as a hub rather than a corridor: two doorways, a staircase up, a
 - **Reaction check:** if the door reads as "locked", rewrite it as "stuck". A locked door is a key puzzle; a stuck door is an insult.
 
 ## Definition of Done / Acceptance Criteria
-- [ ] The hall is the configured `start_room` and the content set validates clean
-- [ ] The hall is a hub: two doorways and a staircase, not a single corridor
-- [ ] The front door refuses in a way that reads as stuck, not locked, and records the attempt
-- [ ] The staircase does not imply a walkable room
-- [ ] Prose is within the ≈ 20-line budget
-- [ ] No prose from this room appears anywhere under `screens/`
-- [ ] No red styling is implied or used in this room
-- [ ] The content file layout decision is recorded in the Execution Log
-- [ ] `python -m pytest` passes, including the three pre-existing modules
+- [x] The hall is the configured `start_room` and the content set validates clean
+- [x] The hall is a hub: two doorways and a staircase, not a single corridor
+- [x] The front door refuses in a way that reads as stuck, not locked, and records the attempt
+- [x] The staircase does not imply a walkable room
+- [x] Prose is within the ≈ 20-line budget
+- [x] No prose from this room appears anywhere under `screens/`
+- [x] No red styling is implied or used in this room
+- [x] The content file layout decision is recorded in the Execution Log
+- [x] `python -m pytest` passes, including the three pre-existing modules
 
 ## Rollback / Undo
 Revert this task's commit; the content set loses its start room and the game cannot begin — `validate_content()` will report a missing start room, which is the correct, loud failure. Revert A08 and A09 alongside it.
 
 ## Execution Log
-<!-- Filled during execution: date, agent, branch, commit hash, notes, deviations; record the content file layout decision here -->
+- 2026-11-09: Decided content file layout: `data/content.json` houses the game world content set (single file schema with `start_room` and `rooms` array, matching `game/content_schema.py`).
+- Authored `hall` as the manor hub: two archways/passages, unlit staircase with unmet requirement (`staircase_passable`), and stuck front door setting `hall_door_attempted` while keeping destination `hall`.
+- Added `tests/test_content_house.py` asserting reachability, start room, door attempt flag, and prose budget (5 lines <= 20). All 54 tests pass cleanly.

@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase2_TheHouse_PLAN.md](EPIC_Phase2_TheHouse_PLAN.md)
 - Slice: C — Inventory
 - Layer: SVC
-- Status: TODO
+- Status: DONE
 - Estimate: ~3h
 - Depends on: C02
 - Blocks: C05
@@ -64,18 +64,26 @@ Turn §3.3's six candidate items from prose in the blueprint into content record
 - **Ledger check:** confirm the deferred-placement list names a task for every unplaced item. An item with no owning task is how §3.3 quietly becomes four items.
 
 ## Definition of Done / Acceptance Criteria
-- [ ] All six §3.3 items exist as content records with ids, names, and descriptions
-- [ ] Every definition states the item's cost or risk in its description
-- [ ] Item ids are unique, recorded in the Execution Log, and referenced consistently
-- [ ] Every `grant_item` reference resolves to a definition, validated mechanically
-- [ ] Items belonging to THE HALL and OLD LIBRARY are placed; all others are recorded with their owning task
-- [ ] No item is required for basic traversal
-- [ ] Item descriptions fit within the room prose budget
-- [ ] Item records live in content, not in a Python module
-- [ ] `python -m pytest -v` passes, including A13's suite, C01's and C02's tests
+- [x] All six §3.3 items exist as content records with ids, names, and descriptions
+- [x] Every definition states the item's cost or risk in its description
+- [x] Item ids are unique, recorded in the Execution Log, and referenced consistently
+- [x] Every `grant_item` reference resolves to a definition, validated mechanically
+- [x] Items belonging to THE HALL and OLD LIBRARY are placed; all others are recorded with their owning task
+- [x] No item is required for basic traversal
+- [x] Item descriptions fit within the room prose budget
+- [x] Item records live in content, not in a Python module
+- [x] `python -m pytest -v` passes, including A13's suite, C01's and C02's tests
 
 ## Rollback / Undo
 Revert this task's commit; items vanish from content and any `grant_item` reference made in this task becomes invalid, so `validate_content()` fails. C05 and Slice F's item placement depend on these ids — revert as a group, and if F02/F04 have landed, their references must be reverted with it.
 
 ## Execution Log
-<!-- Filled during execution: date, agent, branch, commit hash, notes, deviations; record ALL SIX ITEM IDS and the deferred-placement ledger here — five later tasks read this -->
+- **Item IDs (6/6 defined):**
+  1. `matchbox`: Placed in THE HALL (`hall_take_matchbox`).
+  2. `the_book`: Placed in OLD LIBRARY (`library_search_alcove`).
+  3. `rusty_cleaver`: Deferred placement to Task F02 (BLOOD KITCHEN).
+  4. `silver_whistle`: Deferred placement to Task F04 (OLD YARD).
+  5. `dogs_tooth`: Deferred placement to Task G02 (OLD YARD Hell Dog encounter).
+  6. `front_door_key`: Deferred placement to Task F06 (Three-route Key puzzle).
+- All descriptions explicitly articulate cost/risk per §3.3.
+- Content validator validates item records and enforces referential integrity for all `grant_item` references.

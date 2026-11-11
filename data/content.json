@@ -1,0 +1,687 @@
+{
+  "start_room": "hall",
+  "items": [
+    {
+      "id": "matchbox",
+      "name": "Matchbox",
+      "description": "A tin box of sulfur matches. Striking one relights your wick, but the sulfur reek alerts the Shadow."
+    },
+    {
+      "id": "rusty_cleaver",
+      "name": "Rusty Cleaver",
+      "description": "Heavy butcher iron crusted in dried gore. Lethal against beasts, but carrying it drains composure constantly."
+    },
+    {
+      "id": "the_book",
+      "name": "The Book",
+      "description": "A massive volume bound in black hide. Contains forbidden truths, but reading it is agonizingly slow and watched."
+    },
+    {
+      "id": "silver_whistle",
+      "name": "Silver Whistle",
+      "description": "Tarnished silver engraved with warding runes. Its shrill blast subdues the Hell Dog, but echoes to worse things."
+    },
+    {
+      "id": "dogs_tooth",
+      "name": "Dog's Tooth",
+      "description": "A jagged canine tooth torn from the beast. Useless for defense; its bitter stench is only grim proof of survival."
+    },
+    {
+      "id": "front_door_key",
+      "name": "Front Door Key",
+      "description": "Cold wrought iron that fits the manor exit. Freedom's price, though two of its three paths lead to death."
+    }
+  ],
+  "rooms": [
+    {
+      "id": "hall",
+      "name": "The Hall",
+      "prose": "A high, vaulted manor hall. The air is cold and smells of damp stone and tallow.\nTo the left, an open archway breathes a faint, warm stench of raw iron.\nTo the right, a heavy carved door stands ajar toward quiet dust.\nAhead, a wide staircase ascends into suffocating, unlit darkness.\nBehind you, the massive front door is swollen shut in its heavy iron frame.",
+      "revisit_prose": "You step back into the vaulted silence of the hall. The dust motes hang undisturbed.\nNow that you have studied the lectern's tome, the front door is no longer an impassable slab — you recognize the concealed latch along its iron frame.",
+      "choices": [
+        {
+          "id": "hall_front_door",
+          "label": "Work the concealed latch on the front door",
+          "destination": "front_door_escape",
+          "tier": "scar",
+          "requirements": [
+            {
+              "predicate": "has_flag",
+              "flag": "knows_exit"
+            }
+          ]
+        },
+        {
+          "id": "hall_staircase",
+          "label": "Attempt to climb the dark grand staircase",
+          "destination": "hall",
+          "tier": "setback",
+          "requirements": [
+            {
+              "predicate": "has_flag",
+              "flag": "staircase_passable"
+            }
+          ]
+        },
+        {
+          "id": "hall_right",
+          "label": "Take the right-hand passage into the library",
+          "destination": "old_library",
+          "tier": "scar",
+          "effects": [
+            {
+              "verb": "spend_composure",
+              "amount": 5
+            }
+          ]
+        },
+        {
+          "id": "hall_left",
+          "label": "Step through the left archway into the gloom",
+          "destination": "left_doorway_death",
+          "tier": "death",
+          "cause": "You stepped blindly past the warned threshold and were butchered in the dark.",
+          "telegraphs": [
+            "A draft of warm, unnatural air breathes steadily from the dark archway.",
+            "A wet, rhythmic dripping echoes somewhere just past the threshold, accompanied by the dull scrape of bone on stone."
+          ]
+        },
+        {
+          "id": "hall_take_matchbox",
+          "label": "Take the matchbox resting on the cold mantel",
+          "destination": "hall",
+          "tier": "scar",
+          "requirements": [
+            {
+              "predicate": "lacks_item",
+              "item": "matchbox"
+            },
+            {
+              "predicate": "has_free_slot"
+            }
+          ],
+          "effects": [
+            {
+              "verb": "grant_item",
+              "item": "matchbox"
+            },
+            {
+              "verb": "restore_composure",
+              "amount": 10
+            }
+          ],
+          "telegraphs": [
+            "A faint metallic clink comes from the fireplace ledge."
+          ]
+        },
+        {
+          "id": "hall_surrender_shadow",
+          "label": "Let your trembling hands drop and step willingly into the gathering dark",
+          "destination": "shadow_walk_ending",
+          "tier": "scar",
+          "requirements": [
+            {
+              "predicate": "composure_under",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "id": "hall_kitchen",
+          "label": "Carefully navigate the warm archway into the blood kitchen",
+          "destination": "blood_kitchen",
+          "tier": "scar",
+          "effects": [
+            {
+              "verb": "spend_composure",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "id": "hall_yard",
+          "label": "Unbolt the back threshold door leading into the rainy yard",
+          "destination": "old_yard",
+          "tier": "scar"
+        },
+        {
+          "id": "hall_inspect_clock",
+          "label": "Reach into the ticking grandfather clock housing for the brass key",
+          "destination": "clock_trap_death",
+          "tier": "death",
+          "cause": "You reached into the clock cabinet; a heavy lead counterweight plummeted, crushing your arm and alerting the dark.",
+          "telegraphs": [
+            "The grandfather clock's pendulum ticks with a harsh, erratic shudder, strung on coiled steel.",
+            "A pungent smell of hot gear oil and shaved brass drifts from inside the narrow wooden housing."
+          ]
+        },
+        {
+          "id": "hall_escape_dog_climax",
+          "label": "Slam the heavy front door shut as burning fangs snap outside in the fog",
+          "destination": "front_door_escape",
+          "tier": "setback",
+          "requirements": [
+            {
+              "predicate": "has_flag",
+              "flag": "dog_whistled_away"
+            },
+            {
+              "predicate": "has_flag",
+              "flag": "knows_exit"
+            }
+          ],
+          "effects": [
+            {
+              "verb": "spend_composure",
+              "amount": 10
+            },
+            {
+              "verb": "set_flag",
+              "flag": "escaped_dog_climax"
+            }
+          ],
+          "telegraphs": [
+            "Ember-red eyes blaze through the entryway fog — the banished hound has tracked you to the exit!"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "old_library",
+      "name": "Old Library",
+      "prose": "Rows of towering oak shelves lean inward like tired sentinels, bowing under rotting leather and mold.\nThe air is dead-still and freezing, thick with the scent of powdered parchment and ancient tallow.\nIn the center of the chamber, a heavy iron lectern bears an enormous open tome.\nIts yellowed vellum pages lie bathed in the shivering beam of your lantern.\nEvery shadow between the bookcases feels deliberate, as though the room itself were holding its breath, watching you turn each page.",
+      "choices": [
+        {
+          "id": "library_read",
+          "label": "Read the open tome on the lectern",
+          "destination": "old_library",
+          "tier": "setback",
+          "effects": [
+            {
+              "verb": "spend_oil",
+              "amount": 25
+            },
+            {
+              "verb": "spend_composure",
+              "amount": 15
+            },
+            {
+              "verb": "set_flag",
+              "flag": "knows_exit"
+            }
+          ]
+        },
+        {
+          "id": "library_return",
+          "label": "Return to the hall",
+          "destination": "hall",
+          "tier": "scar"
+        },
+        {
+          "id": "library_search_alcove",
+          "label": "Search the darkened alcove behind the shelves",
+          "destination": "old_library",
+          "tier": "scar",
+          "expires_after_turns": 2,
+          "expiry_text": "The alcove has filled with heavy shadows; you hesitated too long.",
+          "requirements": [
+            {
+              "predicate": "lacks_item",
+              "item": "the_book"
+            },
+            {
+              "predicate": "has_free_slot"
+            }
+          ],
+          "effects": [
+            {
+              "verb": "grant_item",
+              "item": "the_book"
+            }
+          ],
+          "telegraphs": [
+            "Dust settles quickly in the alcove; the space will soon be swallowed by darkness."
+          ]
+        },
+        {
+          "id": "library_study_multiturn",
+          "label": "Study the heavy leather-bound Book across three consecutive turns",
+          "destination": "old_library",
+          "tier": "setback",
+          "requirements": [
+            {
+              "predicate": "no_active_multiturn"
+            }
+          ],
+          "effects": [
+            {
+              "verb": "start_multiturn",
+              "action_id": "read_book",
+              "total_steps": 3,
+              "step_costs": [
+                {
+                  "verb": "spend_oil",
+                  "amount": 1
+                }
+              ],
+              "completion_effects": [
+                {
+                  "verb": "set_flag",
+                  "flag": "knows_dog_name"
+                },
+                {
+                  "verb": "set_flag",
+                  "flag": "library_door_ajar"
+                },
+                {
+                  "verb": "grant_item",
+                  "item": "front_door_key"
+                }
+              ],
+              "cancel_effects": [
+                {
+                  "verb": "spend_composure",
+                  "amount": 3
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "library_continue_reading",
+          "label": "Continue reading the yellowed passage by guttering candle",
+          "destination": "old_library",
+          "tier": "setback",
+          "requirements": [
+            {
+              "predicate": "has_active_multiturn",
+              "action_id": "read_book"
+            }
+          ],
+          "effects": [
+            {
+              "verb": "advance_multiturn"
+            }
+          ]
+        },
+        {
+          "id": "library_interrupt_reading",
+          "label": "Step away from the lectern and watch the silent room",
+          "destination": "old_library",
+          "tier": "scar",
+          "requirements": [
+            {
+              "predicate": "has_active_multiturn",
+              "action_id": "read_book"
+            }
+          ],
+          "effects": [
+            {
+              "verb": "cancel_multiturn"
+            }
+          ]
+        },
+        {
+          "id": "library_take_genuine_key",
+          "label": "Inspect the secret drawer beneath the study desk",
+          "destination": "old_library",
+          "tier": "scar",
+          "requirements": [
+            {
+              "predicate": "lacks_item",
+              "item": "front_door_key"
+            },
+            {
+              "predicate": "has_free_slot"
+            }
+          ],
+          "effects": [
+            {
+              "verb": "grant_item",
+              "item": "front_door_key"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "left_doorway_death",
+      "name": "The Threshold of Blood",
+      "prose": "You cross into the suffocating dark of the unlit passage. Before your eyes can adjust, a silhouette lunges with jagged butcher's iron.\nThere is no time to raise the lantern, and no second step.",
+      "tier": "death",
+      "cause": "You stepped blindly past the warned threshold and were butchered in the dark.",
+      "choices": []
+    },
+    {
+      "id": "front_door_escape",
+      "name": "The Threshold of Night",
+      "prose": "The concealed iron release clicks beneath the frame. The massive oak door gives way with a groan of cold hinges.\nYou slip outside into the biting night fog, the manor's shadow receding behind you.\nThe lantern wick gutters in the mountain wind, but you are out. You survived.",
+      "tier": "ending",
+      "choices": []
+    },
+    {
+      "id": "shadow_walk_ending",
+      "name": "The Dark Embrace",
+      "prose": "Your trembling hands go still. The hammering in your chest slows to a quiet, cold rhythm.\nYou stop running. You stop looking for doors that only open inward.\nFrom the high corners of the ceiling, the shadows lower themselves like black silk.\n\"There now,\" the Shadow murmurs, its voice right against your ear, familiar as your own thought.\n\"Was that so hard? You fought so loudly for so small a scrap of tallow.\"\nYou do not close your eyes. You step forward into the cold, painless dark, and let the house take you.",
+      "tier": "ending",
+      "choices": []
+    },
+    {
+      "id": "blood_kitchen",
+      "name": "Blood Kitchen",
+      "prose": "An oppressive heat radiates from an iron woodstove. The air is heavy with grease and copper.\nA massive cleaver stands buried deep in an oak chopping block, its blade crusted with dark crimson.\nHanging from cold ceiling hooks are wrapped cuts of butcher meat, dripping slowly into zinc pans.\nOn a high shelf behind a looming pig carcass rests a battered tin flask of lantern oil.\nAt the center table, an enameled basin holds a tarnished brass key resting atop a tangle of warm entrails.",
+      "choices": [
+        {
+          "id": "kitchen_take_cleaver",
+          "label": "Pry the heavy rusty cleaver out of the oak block",
+          "destination": "blood_kitchen",
+          "tier": "scar",
+          "requirements": [
+            {
+              "predicate": "lacks_item",
+              "item": "rusty_cleaver"
+            },
+            {
+              "predicate": "has_free_slot"
+            }
+          ],
+          "effects": [
+            {
+              "verb": "grant_item",
+              "item": "rusty_cleaver"
+            },
+            {
+              "verb": "spend_composure",
+              "amount": 8
+            }
+          ]
+        },
+        {
+          "id": "kitchen_take_meat",
+          "label": "Cut down a slab of raw meat from the ceiling hook",
+          "destination": "blood_kitchen",
+          "tier": "scar",
+          "effects": [
+            {
+              "verb": "set_flag",
+              "flag": "has_meat"
+            }
+          ]
+        },
+        {
+          "id": "kitchen_take_oil",
+          "label": "Reach behind the hanging carcass to refill your lantern from the tin canister",
+          "destination": "blood_kitchen",
+          "tier": "scar",
+          "requirements": [
+            {
+              "predicate": "composure_above",
+              "amount": 5
+            }
+          ],
+          "effects": [
+            {
+              "verb": "restore_oil",
+              "amount": 100
+            },
+            {
+              "verb": "spend_composure",
+              "amount": 5
+            },
+            {
+              "verb": "set_flag",
+              "flag": "kitchen_oil_claimed"
+            }
+          ],
+          "telegraphs": [
+            "The cold carcass sways slightly on its chain as your shoulder brushes past."
+          ]
+        },
+        {
+          "id": "kitchen_take_basin_key",
+          "label": "Reach barehanded into the basin of warm entrails for the key",
+          "destination": "kitchen_trap_death",
+          "tier": "death",
+          "cause": "You plunged your hand into the viscera; barbed iron teeth sprang shut from the mire, severing your wrist.",
+          "telegraphs": [
+            "Unnatural, feverish steam rises steadily from the gore in the basin.",
+            "A rhythmic, sickening pulse thrums under the basin rim, as if the entrails were coiled around a hair-trigger spring."
+          ]
+        },
+        {
+          "id": "kitchen_return",
+          "label": "Retreat through the archway back into The Hall",
+          "destination": "hall",
+          "tier": "scar"
+        }
+      ]
+    },
+    {
+      "id": "kitchen_trap_death",
+      "name": "The Butcher's Grip",
+      "prose": "Barbed iron jaws snap shut out of the warm offal with bone-crushing force.\nThe dark rushes in before you can cry out.",
+      "tier": "death",
+      "cause": "You plunged your hand into the viscera; barbed iron teeth sprang shut from the mire, severing your wrist.",
+      "choices": []
+    },
+    {
+      "id": "clock_trap_death",
+      "name": "The Clockwork Guillotine",
+      "prose": "A sudden metallic snap rings out. The lead counterweight drops like an executioner's blade, pinning you in the dark.",
+      "tier": "death",
+      "cause": "You reached into the clock cabinet; a heavy lead counterweight plummeted, crushing your arm and alerting the dark.",
+      "choices": []
+    },
+    {
+      "id": "old_yard",
+      "name": "Old Yard",
+      "prose": "Cold driving rain lashes down from a starless sky, turning the cobblestones into slick black mud.\nTo the north and east, an immense stone perimeter wall rises ten cubits high, slick with wet moss and completely insurmountable.\nNear the muddy garden beds stands a low, rotting wooden doghouse. Heavy iron chain links lie coiled in the mud.\nNear the shed steps, something metallic glints faintly beneath fallen pine needles.\nThere is no way over the wall; the only path is back through the manor door.",
+      "choices": [
+        {
+          "id": "yard_take_whistle",
+          "label": "Kneel in the mud and pick up the tarnished silver whistle",
+          "destination": "old_yard",
+          "tier": "scar",
+          "requirements": [
+            {
+              "predicate": "lacks_item",
+              "item": "silver_whistle"
+            },
+            {
+              "predicate": "has_free_slot"
+            }
+          ],
+          "effects": [
+            {
+              "verb": "grant_item",
+              "item": "silver_whistle"
+            }
+          ]
+        },
+        {
+          "id": "yard_inspect_wall",
+          "label": "Attempt to scale the dripping stone perimeter wall",
+          "destination": "old_yard",
+          "tier": "setback",
+          "effects": [
+            {
+              "verb": "spend_composure",
+              "amount": 5
+            },
+            {
+              "verb": "spend_oil",
+              "amount": 2
+            }
+          ],
+          "telegraphs": [
+            "The stone blocks are worn smooth by decades of rain, offering no handhold or ledge."
+          ]
+        },
+        {
+          "id": "yard_approach_doghouse",
+          "label": "Approach the dark opening of the chained doghouse",
+          "destination": "yard_doghouse_encounter",
+          "tier": "setback",
+          "telegraphs": [
+            "A deep, guttural growl vibrates through the wet earth beneath your boots."
+          ]
+        },
+        {
+          "id": "yard_return",
+          "label": "Step out of the drenching rain back into The Hall",
+          "destination": "hall",
+          "tier": "scar"
+        }
+      ]
+    },
+    {
+      "id": "yard_doghouse_encounter",
+      "name": "The Kennel",
+      "prose": "Two ember-red eyes open in the pitch blackness of the rotting kennel.\nThe Hell Dog rises slowly, ribs like iron slats under soot-black hide. Twin jaws part to exhale hot ash.\nIt does not lunge — it stands perfectly still, waiting. It only moves when you move.",
+      "choices": [
+        {
+          "id": "dog_freeze",
+          "label": "Freeze and stand perfectly still in the rain",
+          "destination": "yard_doghouse_encounter",
+          "tier": "scar",
+          "effects": [
+            {
+              "verb": "spend_oil",
+              "amount": 1
+            },
+            {
+              "verb": "spend_composure",
+              "amount": 1
+            },
+            {
+              "verb": "set_flag",
+              "flag": "knows_dog_freezes"
+            }
+          ],
+          "telegraphs": [
+            "The beast pauses, black chest heaving. It does not advance. It is waiting for you to move."
+          ]
+        },
+        {
+          "id": "dog_slow",
+          "label": "Edge past slowly, step by deliberate step",
+          "destination": "old_yard",
+          "tier": "scar",
+          "effects": [
+            {
+              "verb": "spend_oil",
+              "amount": 3
+            },
+            {
+              "verb": "spend_composure",
+              "amount": 2
+            },
+            {
+              "verb": "set_flag",
+              "flag": "dog_bypassed_slowly"
+            }
+          ]
+        },
+        {
+          "id": "dog_sprint",
+          "label": "Sprint for the courtyard gate",
+          "destination": "old_yard",
+          "tier": "setback",
+          "requirements": [
+            {
+              "predicate": "composure_above",
+              "amount": 20
+            }
+          ],
+          "effects": [
+            {
+              "verb": "spend_composure",
+              "amount": 15
+            },
+            {
+              "verb": "set_flag",
+              "flag": "dog_bypassed_sprint"
+            }
+          ]
+        },
+        {
+          "id": "dog_feed_meat",
+          "label": "Toss the butcher's meat across the wet stones",
+          "destination": "old_yard",
+          "tier": "scar",
+          "requirements": [
+            {
+              "predicate": "has_flag",
+              "flag": "has_meat"
+            }
+          ],
+          "effects": [
+            {
+              "verb": "set_flag",
+              "flag": "dog_pacified_meat"
+            }
+          ]
+        },
+        {
+          "id": "dog_whistle_named",
+          "label": "Blow the silver whistle sounding the true name from the tome",
+          "destination": "old_yard",
+          "tier": "scar",
+          "requirements": [
+            {
+              "predicate": "has_item",
+              "item": "silver_whistle"
+            },
+            {
+              "predicate": "has_flag",
+              "flag": "knows_dog_name"
+            }
+          ],
+          "effects": [
+            {
+              "verb": "set_flag",
+              "flag": "dog_whistled_away"
+            }
+          ]
+        },
+        {
+          "id": "dog_whistle_unnamed",
+          "label": "Blow the silver whistle with an ignorant, shrill blast",
+          "destination": "yard_doghouse_encounter",
+          "tier": "setback",
+          "requirements": [
+            {
+              "predicate": "has_item",
+              "item": "silver_whistle"
+            }
+          ],
+          "effects": [
+            {
+              "verb": "spend_composure",
+              "amount": 10
+            },
+            {
+              "verb": "spend_oil",
+              "amount": 2
+            }
+          ],
+          "telegraphs": [
+            "The piercing shriek echoes off the stone walls, but the hound merely bares its fangs in heightened fury."
+          ]
+        },
+        {
+          "id": "dog_retreat",
+          "label": "Step backward very slowly toward the courtyard",
+          "destination": "old_yard",
+          "tier": "scar",
+          "effects": [
+            {
+              "verb": "spend_oil",
+              "amount": 2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -4,13 +4,13 @@
 - Epic: [EPIC_Phase2_TheHouse_PLAN.md](EPIC_Phase2_TheHouse_PLAN.md)
 - Slice: A — Completing the Foundation
 - Layer: UI
-- Status: TODO
+- Status: DONE
 - Estimate: ~3h
 - Depends on: A02
 - Blocks: A05, A08
 - Covers: AC-1, AC-22
 - Suggested commit: `feat(ui): add selectable choices and room transitions`
-- Branch: feature/phase_2_the_house (per GP-3; Git Policy not yet confirmed)
+- Branch: feature/phase_2_the_house
 
 ## Objective
 Let the player pick a choice with the keyboard, resolve it through the existing effect resolver, and move to the destination room — with selectable options only, never typed letters.
@@ -60,17 +60,17 @@ Let the player pick a choice with the keyboard, resolve it through the existing 
 - **Manual verification:** navigate with the arrow keys only and complete a two-room loop without typing a single letter. Then press a wrong letter and confirm nothing happens.
 
 ## Definition of Done / Acceptance Criteria
-- [ ] Every choice is selectable with the keyboard; no action requires typing
-- [ ] A mistyped key cannot cause a transition, an effect, or a death
-- [ ] Telegraphs render before the choice is offered
-- [ ] A refused choice displays its reason and leaves the run state untouched
-- [ ] Effects are applied only through `resolve_choice`, never by the screen directly
-- [ ] Room transitions update the run state's current room and turn count
-- [ ] A room with no choices renders and does not accept Enter as a transition
-- [ ] `python -m pytest` passes, including the three pre-existing modules
+- [x] Every choice is selectable with the keyboard; no action requires typing
+- [x] A mistyped key cannot cause a transition, an effect, or a death
+- [x] Telegraphs render before the choice is offered
+- [x] A refused choice displays its reason and leaves the run state untouched
+- [x] Effects are applied only through `resolve_choice`, never by the screen directly
+- [x] Room transitions update the run state's current room and turn count
+- [x] A room with no choices renders and does not accept Enter as a transition
+- [x] `python -m pytest` passes, including the three pre-existing modules
 
 ## Rollback / Undo
 Revert this task's commit; the screen renders rooms (A02) but the player cannot move. A05, A08 and the rest of Slices C–G all assume transitions exist — revert together with A02 or not at all.
 
 ## Execution Log
-<!-- Filled during execution: date, agent, branch, commit hash, notes, deviations -->
+- 2026-11-09: Implemented keyboard-driven choice selection (Up/Down navigation with wrapping, Enter selection) in `screens/game.py`. Choices are resolved via `resolve_choice()`. Telegraphs render before choices in `#scene-telegraphs`. Refused choices display failure reasons on the prompt line without state mutation. Tests added in `tests/test_game_screen.py` verifying cursor movement, transitions, refused requirements, and empty choice rooms. All 36 tests pass.

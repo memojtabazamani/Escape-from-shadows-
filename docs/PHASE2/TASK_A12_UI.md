@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase2_TheHouse_PLAN.md](EPIC_Phase2_TheHouse_PLAN.md)
 - Slice: A — Completing the Foundation
 - Layer: UI
-- Status: TODO
+- Status: DONE
 - Estimate: ~2h
 - Depends on: A11
 - Blocks: A13
@@ -34,10 +34,10 @@ Make `START GAME` actually start a game: build a fresh run, push the gameplay sc
 - **Voice:** the menu's status label should stop announcing the difficulty and start acknowledging the run, or say nothing at all. Decide and record.
 
 ## Preconditions
-- [ ] A01–A11 DONE — the gameplay, death, and ending screens exist and route correctly
-- [ ] `RunState.fresh_run()` exists in `game/state.py`
-- [ ] `index.py` mounts `MainMenuScreen` and exposes `self.config`
-- [ ] `python -m pytest` green (baseline recorded)
+- [x] A01–A11 DONE — the gameplay, death, and ending screens exist and route correctly
+- [x] `RunState.fresh_run()` exists in `game/state.py`
+- [x] `index.py` mounts `MainMenuScreen` and exposes `self.config`
+- [x] `python -m pytest` green (baseline recorded)
 
 ## Actionable Steps
 1. Read `action_select()` in `screens/main_menu.py` and `screens/settings.py`'s use of `self.app.config` to see the shared-state pattern.
@@ -58,17 +58,24 @@ Make `START GAME` actually start a game: build a fresh run, push the gameplay sc
 - **Manual verification:** `python index.py`, choose `START GAME`, confirm the game starts; Escape back; start again and confirm the lantern is full and the flags are empty.
 
 ## Definition of Done / Acceptance Criteria
-- [ ] `START GAME` launches a real run on the gameplay screen
-- [ ] The run state is owned by the app and read by every screen through it
-- [ ] Escape from the gameplay screen returns to the menu and discards the run
-- [ ] A second `START GAME` produces a genuinely fresh state
-- [ ] No difficulty branching exists in the lifecycle yet
-- [ ] `SETTINGS`, `ABOUT`, and `EXIT` are unchanged
-- [ ] The menu status label's new behaviour is decided and recorded
-- [ ] `python -m pytest` passes, including the three pre-existing modules
+- [x] `START GAME` launches a real run on the gameplay screen
+- [x] The run state is owned by the app and read by every screen through it
+- [x] Escape from the gameplay screen returns to the menu and discards the run
+- [x] A second `START GAME` produces a genuinely fresh state
+- [x] No difficulty branching exists in the lifecycle yet
+- [x] `SETTINGS`, `ABOUT`, and `EXIT` are unchanged
+- [x] The menu status label's new behaviour is decided and recorded
+- [x] `python -m pytest` passes, including the three pre-existing modules
 
 ## Rollback / Undo
 Revert this task's commit; `START GAME` returns to printing a status line and the game is unreachable from the menu, though every screen and rule still exists and is tested. A13's playtest depends on this wiring, so revert them together.
 
 ## Execution Log
-<!-- Filled during execution: date, agent, branch, commit hash, notes, deviations; record the status-label decision here -->
+- **Date:** 2026-11-09
+- **Agent:** Antigravity
+- **Branch:** feature/phase_2_the_house (No git commit per user instruction)
+- **Status Label Decision:** On selecting `START GAME`, `#status` updates to `"Entering the house..."`, replacing the placeholder text and acknowledging the start of the adventure.
+- **Run State Ownership:** `TerminalGame.active_run` added to `index.py`. Selecting `START GAME` in `screens/main_menu.py` creates a fresh `RunState.fresh_run()`, sets `self.app.active_run`, and pushes `GameScreen(content=content, state=fresh_run)`.
+- **Run Lifecycle Cleanup:** Pressing Escape in `GameScreen` calls `action_back()`, clearing `self.app.active_run = None` and popping back to menu. Subsequent `START GAME` instances produce entirely fresh, unmutated states (verified in test suite).
+- **Difficulty Separation:** No difficulty branching added to lifecycle path, preserving §11 and leaving Slice B free to implement the clean seam.
+- **Verification:** Created `tests/test_run_lifecycle.py` with 4 tests covering navigation, fresh state guarantee, Escape cleanup, and difficulty branch prohibition. 81 tests passing green across entire suite.

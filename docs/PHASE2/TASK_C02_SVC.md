@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase2_TheHouse_PLAN.md](EPIC_Phase2_TheHouse_PLAN.md)
 - Slice: C — Inventory
 - Layer: SVC
-- Status: TODO
+- Status: DONE
 - Estimate: ~2.5h (includes a **60-minute time-boxed spike**)
 - Depends on: C01
 - Blocks: C03, C04
@@ -64,18 +64,24 @@ Extend the engine's verb and predicate tables so content can express the new inv
 - **Verdict write-down:** the spike's conclusion belongs in the log in one paragraph, with the concrete case (if any) that forced the decision.
 
 ## Definition of Done / Acceptance Criteria
-- [ ] The 60-minute spike ran and its verdict is recorded before implementation
-- [ ] New predicates and verbs exist, named in the existing style
-- [ ] `effects.py` and `content_schema.py` agree on the new names, and the validator rejects unknown ones
-- [ ] The unknown-verb raise is intact
-- [ ] A full pack produces a requirement gate with an actionable reason, never an exception
-- [ ] New verbs participate in `apply_effects`' all-or-nothing rollback, asserted by test
-- [ ] No change to `game/state.py`'s public contract beyond what C01 already established
-- [ ] The verdict is recorded so D01, F01, F06 and G02 can consume it
-- [ ] `python -m pytest -v` passes, including A13's suite and C01's tests
+- [x] The 60-minute spike ran and its verdict is recorded before implementation
+- [x] New predicates and verbs exist, named in the existing style
+- [x] `effects.py` and `content_schema.py` agree on the new names, and the validator rejects unknown ones
+- [x] The unknown-verb raise is intact
+- [x] A full pack produces a requirement gate with an actionable reason, never an exception
+- [x] New verbs participate in `apply_effects`' all-or-nothing rollback, asserted by test
+- [x] No change to `game/state.py`'s public contract beyond what C01 already established
+- [x] The verdict is recorded so D01, F01, F06 and G02 can consume it
+- [x] `python -m pytest -v` passes, including A13's suite and C01's tests
 
 ## Rollback / Undo
 Revert this task's commit; content using the new verbs becomes invalid and `validate_content()` fails loudly on load, which is the correct failure. Because the new names are mirrored in two files, revert both together or the validator and the resolver will disagree.
 
 ## Execution Log
-<!-- Filled during execution: date, agent, branch, commit hash, notes, deviations; THE SPIKE VERDICT IS MANDATORY HERE — extend or redesign, the evidence, and the implication for D01/F01/F06/G02 -->
+- **Spike Verdict (RISK-3): EXTEND, DO NOT REDESIGN.**
+  The table-driven verb/predicate model (`EFFECT_VERBS`, `REQUIREMENT_PREDICATES`) handles the slot-capped inventory cleanly without an expression parser.
+  Added verbs: `drop_item`, `spend_item`.
+  Added predicates: `has_free_slot`, `inventory_under`, `lacks_item`.
+  Full-pack refusal produces clean, actionable requirement gates.
+  All verbs participate in all-or-nothing rollback in `apply_effects`.
+  Implication for D01/F01/F06/G02: They can safely extend the same table dictionary without architectural upheaval.

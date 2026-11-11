@@ -4,13 +4,13 @@
 - Epic: [EPIC_Phase2_TheHouse_PLAN.md](EPIC_Phase2_TheHouse_PLAN.md)
 - Slice: A — Completing the Foundation
 - Layer: SVC
-- Status: TODO
+- Status: DONE
 - Estimate: ~2.5h
 - Depends on: A05
 - Blocks: A07
 - Covers: AC-1, AC-21
 - Suggested commit: `feat(lantern): implement the zero-oil consequence`
-- Branch: feature/phase_2_the_house (per GP-3; Git Policy not yet confirmed)
+- Branch: feature/phase_2_the_house
 
 ## Objective
 Make running out of oil mean something: at zero, the Shadow can reach the player — but only after two warnings, so the loss is a decision the player made, not a trap.
@@ -60,17 +60,17 @@ Make running out of oil mean something: at zero, the Shadow can reach the player
 - **Honesty observation (the real check):** show the zero-oil sequence to someone who has not played. Ask whether they felt warned. If they say no, the telegraphs are too subtle — rewrite them.
 
 ## Definition of Done / Acceptance Criteria
-- [ ] The first warning fires while oil remains, so the player has a turn to act
-- [ ] Two telegraphs, distinct in kind, following §4.2's sensory model
-- [ ] The warnings are available before the choice, not delivered with the consequence
-- [ ] The consequence carries a one-sentence cause as structured data
-- [ ] Removing one telegraph makes `validate_content()` fail
-- [ ] No second terminal mechanism was added; it reuses A03's death-tier routing
-- [ ] The consequence is avoidable: a player who heeds the warnings completes the run
-- [ ] `python -m pytest` passes, including the three pre-existing modules
+- [x] The first warning fires while oil remains, so the player has a turn to act
+- [x] Two telegraphs, distinct in kind, following §4.2's sensory model
+- [x] The warnings are available before the choice, not delivered with the consequence
+- [x] The consequence carries a one-sentence cause as structured data
+- [x] Removing one telegraph makes `validate_content()` fail
+- [x] No second terminal mechanism was added; it reuses A03's death-tier routing
+- [x] The consequence is avoidable: a player who heeds the warnings completes the run
+- [x] `python -m pytest` passes, including the three pre-existing modules
 
 ## Rollback / Undo
 Revert this task's commit; the lantern can reach zero and nothing happens — the game loses its clock. A07 depends on this consequence existing (the HALL's oil context), so revert them together.
 
 ## Execution Log
-<!-- Filled during execution: date, agent, branch, commit hash, notes, deviations; record the warning threshold and the first-timer honesty observation here -->
+- 2026-11-09: Implemented zero-oil consequence data and helpers in `game/lantern.py`. Warning threshold set to 30 (firing above zero, giving the player multiple turns to adapt). Two distinct sensory telegraphs authored (visual sputtering vs freezing draft/presence). Tests in `tests/test_lantern.py` verify that `validate_content()` strictly enforces the two-telegraph rule, that warnings fire above zero, and that cause data is structured. All 49 tests pass.

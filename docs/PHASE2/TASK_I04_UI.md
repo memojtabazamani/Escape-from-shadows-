@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase2_TheHouse_PLAN.md](EPIC_Phase2_TheHouse_PLAN.md)
 - Slice: I — Persistence & Mercy
 - Layer: UI
-- Status: TODO
+- Status: DONE
 - Estimate: ~2h
 - Depends on: I03, B03
 - Blocks: I05

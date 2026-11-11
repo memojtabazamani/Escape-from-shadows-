@@ -4,13 +4,13 @@
 - Epic: [EPIC_Phase2_TheHouse_PLAN.md](EPIC_Phase2_TheHouse_PLAN.md)
 - Slice: A — Completing the Foundation
 - Layer: UI
-- Status: TODO
+- Status: DONE
 - Estimate: ~2.5h
 - Depends on: A01
 - Blocks: A07
 - Covers: AC-1, AC-9
 - Suggested commit: `feat(ui): show the lantern bar, turn counter, and low-oil warning`
-- Branch: feature/phase_2_the_house (per GP-3; Git Policy not yet confirmed)
+- Branch: feature/phase_2_the_house
 
 ## Objective
 Fill A01's status zone with the two facts the player must always see: how much oil is left, rendered as a bar, and how many turns have passed — plus an amber warning as the oil runs low.
@@ -59,17 +59,18 @@ Fill A01's status zone with the two facts the player must always see: how much o
 - **Boundary check:** set the lantern to the warning threshold and to one below it, and confirm the warning's behaviour is exactly as recorded.
 
 ## Definition of Done / Acceptance Criteria
-- [ ] The lantern renders as a block bar that tracks the state value, clamped at 0 and 100
-- [ ] The turn counter is visible and carries no explanatory label
-- [ ] The low-oil warning uses amber, never red
-- [ ] The composure bar's position is reserved but empty
-- [ ] Both values refresh on state change without a full-screen flicker
-- [ ] `python -m pytest` passes, including the three pre-existing modules
-- [ ] The warning threshold is recorded in the Execution Log
-- [ ] No file changed outside `screens/game.py` and the screen test module
+- [x] The lantern renders as a block bar that tracks the state value, clamped at 0 and 100
+- [x] The turn counter is visible and carries no explanatory label
+- [x] The low-oil warning uses amber, never red
+- [x] The composure bar's position is reserved but empty
+- [x] Both values refresh on state change without a full-screen flicker
+- [x] `python -m pytest` passes, including the three pre-existing modules
+- [x] The warning threshold is recorded in the Execution Log
+- [x] No file changed outside `screens/game.py` and the screen test module
 
 ## Rollback / Undo
 Revert this task's commit; the status zone returns to A01's empty frame. A07 depends on the status zone being meaningful (it is where the HALL's oil context first becomes visible), so revert it before A07 or not at all.
 
 ## Execution Log
-<!-- Filled during execution: date, agent, branch, commit hash, notes, deviations; record the chosen warning threshold and its rationale here -->
+- 2026-11-09: Implemented 10-cell quantized lantern block bar (`render_lantern_bar`), unexplained turn counter (`#turn-status`), and amber low-oil warning in `screens/game.py`.
+- Warning threshold: `LOW_OIL_THRESHOLD = 30` (30% remaining oil, representing critical light depletion where the player should prioritize finding fuel). Color used: Amber (`#d4a373`), preserving §7.4's red reservation. Added automated tests in `tests/test_game_screen.py`. All 40 test assertions pass.

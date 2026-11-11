@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase2_TheHouse_PLAN.md](EPIC_Phase2_TheHouse_PLAN.md)
 - Slice: H — Sound & Music Made Real
 - Layer: UI
-- Status: TODO
+- Status: DONE
 - Estimate: ~2.5h
 - Depends on: H02
 - Blocks: H04
