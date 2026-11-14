@@ -509,6 +509,37 @@ class GameScreen(Screen):
         self.state.advance_turn()
         dest_room = self.get_room(result.destination)
 
+        # Check if destination is a terminal ending
+        if choice.get("tier") == "ending" or dest_room.get("tier") == "ending":
+            from game.ending_resolver import resolve_terminal_event
+            dest_id = result.destination
+            ending_id = resolve_terminal_event(self.state, dest_id)
+
+            self.state.terminal_outcome = ending_id
+            from game.save import delete_saved_game
+            delete_saved_game()
+            prompt_line.update(f"> {choice.get('label', '')}")
+            self.render_room(result.destination)
+
+            end_title = dest_room.get("name")
+            end_prose = dest_room.get("prose")
+            for e in self.content.get("endings", []):
+                if isinstance(e, dict) and e.get("id") == ending_id:
+                    end_title = e.get("title", end_title)
+                    end_prose = e.get("prose", end_prose)
+                    break
+
+            self.app.push_screen(
+                EndingScreen(
+                    room=dest_room,
+                    content=self.content,
+                    title=end_title,
+                    prose=end_prose,
+                    ending_id=ending_id,
+                )
+            )
+            return
+
         # Check zero-composure voluntary walk (AC-11)
         if is_zero_composure(self.state):
             self.state.terminal_outcome = "shadow_walk"
@@ -518,12 +549,15 @@ class GameScreen(Screen):
                 EndingScreen(
                     room=walk_room,
                     content=self.content,
+                    ending_id="shadow_walk",
                 )
             )
             return
 
         # Check zero-oil consequence
         if is_zero_oil(self.state):
+            if self.state.current_room == "hall" and self.state.turn_count <= 3:
+                self.state.set_flag("early_hall_death")
             self.state.terminal_outcome = "death"
             from game.save import delete_saved_game
             delete_saved_game()
@@ -542,6 +576,8 @@ class GameScreen(Screen):
             return
 
         if choice.get("tier") == "death" or dest_room.get("tier") == "death":
+            if self.state.current_room == "hall" and self.state.turn_count <= 3:
+                self.state.set_flag("early_hall_death")
             self.state.terminal_outcome = "death"
             from game.save import delete_saved_game
             delete_saved_game()
@@ -557,20 +593,6 @@ class GameScreen(Screen):
                     lesson=lesson,
                     content=self.content,
                     state=self.state,
-                )
-            )
-            return
-
-        if choice.get("tier") == "ending" or dest_room.get("tier") == "ending":
-            self.state.terminal_outcome = "escape"
-            from game.save import delete_saved_game
-            delete_saved_game()
-            prompt_line.update(f"> {choice.get('label', '')}")
-            self.render_room(result.destination)
-            self.app.push_screen(
-                EndingScreen(
-                    room=dest_room,
-                    content=self.content,
                 )
             )
             return

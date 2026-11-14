@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase3_TheShadow_PLAN.md](EPIC_Phase3_TheShadow_PLAN.md)
 - Slice: A — Meta-Progression & The Endings Gallery
 - Layer: SVC
-- Status: TODO
+- Status: DONE
 - Estimate: ~2.5h
 - Depends on: A01
 - Blocks: A03, B01
@@ -27,8 +27,8 @@ Define the structured metadata schema for canonical endings in `game/endings.py`
 - **Conventions to respect:** Dataclass structures; pure data; typed dictionaries; strict schema validation.
 
 ## Preconditions
-- [ ] Task A01 DONE (`game/profile.py` exists and is tested).
-- [ ] Existing schema tests pass cleanly.
+- [x] Task A01 DONE (`game/profile.py` exists and is tested).
+- [x] Existing schema tests pass cleanly.
 
 ## Actionable Steps
 1. In `game/endings.py`, define dataclass `EndingMetadata`:
@@ -50,12 +50,15 @@ Define the structured metadata schema for canonical endings in `game/endings.py`
 - **Commands:** `python -m pytest tests/test_endings_schema.py -v`.
 
 ## Definition of Done / Acceptance Criteria
-- [ ] `game/endings.py` defines all 7 canonical endings with correct IDs and metadata per §2.3.
-- [ ] `game/content_schema.py` validates endings data without breaking existing room/item validations.
-- [ ] Schema tests pass with 100% success.
+- [x] `game/endings.py` defines all 7 canonical endings with correct IDs and metadata per §2.3.
+- [x] `game/content_schema.py` validates endings data without breaking existing room/item validations.
+- [x] Schema tests pass with 100% success.
 
 ## Rollback / Undo
 Revert modifications to `game/content_schema.py` and delete `game/endings.py`.
 
 ## Execution Log
-<!-- Filled during execution: date, who/what agent, branch, commit hash, notes, deviations -->
+- **Date:** 2026-11-11
+- **Agent:** Antigravity (Coding Worker)
+- **Branch:** `feature/phase_3_the_shadow`
+- **Implemented:** `game/endings.py` defining `EndingMetadata`, `CANONICAL_ENDINGS` dictionary with all 7 endings (1..7), `get_ending_metadata()`, `get_all_canonical_endings()`, updated `game/content_schema.py` with endings validation, and wrote `tests/test_endings_schema.py`.

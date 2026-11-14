@@ -165,11 +165,39 @@ def validate_content(content: dict[str, Any]) -> list[ValidationProblem]:
                         if target_item not in item_ids:
                             problems.append(
                                 ValidationProblem(
-                                    f"choice:{ch.get('id')}",
-                                    "grant_item",
-                                    f"item '{target_item}' has no definition in 'items'",
-                                )
+                                f"choice:{ch.get('id')}",
+                                "grant_item",
+                                f"item '{target_item}' has no definition in 'items'",
                             )
+                        )
+
+    # Endings validation (Phase 3 Task A02)
+    ending_ids: set[str] = set()
+    raw_endings = content.get("endings")
+    if raw_endings is not None:
+        if not isinstance(raw_endings, list):
+            problems.append(ValidationProblem("<root>", "endings", "'endings' must be a list of ending records"))
+        else:
+            for index, ending in enumerate(raw_endings):
+                ending_prefix = f"endings[{index}]"
+                if not isinstance(ending, dict):
+                    problems.append(ValidationProblem(ending_prefix, "<ending>", "ending must be a dict"))
+                    continue
+                e_id = ending.get("id")
+                if not isinstance(e_id, str) or not e_id:
+                    problems.append(ValidationProblem(ending_prefix, "id", "ending id must be a non-empty string"))
+                elif e_id in ending_ids:
+                    problems.append(ValidationProblem(ending_prefix, "id", f"duplicate ending id '{e_id}'"))
+                else:
+                    ending_ids.add(e_id)
+
+                title = ending.get("title")
+                if not isinstance(title, str) or not title:
+                    problems.append(ValidationProblem(ending_prefix, "title", "ending title must be a non-empty string"))
+
+                prose = ending.get("prose") if ending.get("prose") is not None else ending.get("summary")
+                if not isinstance(prose, str) or not prose:
+                    problems.append(ValidationProblem(ending_prefix, "prose", "ending prose/summary must be a non-empty string"))
 
     # Cross-record checks
     problems.extend(_validate_destinations(rooms_by_id))

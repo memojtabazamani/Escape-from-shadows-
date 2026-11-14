@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase3_TheShadow_PLAN.md](EPIC_Phase3_TheShadow_PLAN.md)
 - Slice: B — The Multiple Endings Spectrum
 - Layer: SVC
-- Status: TODO
+- Status: DONE
 - Estimate: ~3h
 - Depends on: A02
 - Blocks: B02, B03
@@ -33,8 +33,8 @@ Author the high-atmosphere narrative prose and room/destination records for all 
 - **Constraint:** Each ending must fit a single terminal screen without scrolling (prose budget <= 20 lines).
 
 ## Preconditions
-- [ ] Task A02 DONE (endings schema defined).
-- [ ] Working tree clean and content schema validator passing.
+- [x] Task A02 DONE (endings schema defined).
+- [x] Working tree clean and content schema validator passing.
 
 ## Actionable Steps
 1. In `data/content.json`, add an `endings` dictionary or terminal room definitions for each of the 7 endings:
@@ -56,13 +56,14 @@ Author the high-atmosphere narrative prose and room/destination records for all 
 - **Commands:** `python -m pytest tests/test_endings_content.py -v`.
 
 ## Definition of Done / Acceptance Criteria
-- [ ] All 7 endings authored with prose matching the philosophical tone in §2.3.
-- [ ] Content conforms to `content_schema.py`.
-- [ ] All prose fits the terminal budget.
-- [ ] Tests pass cleanly.
+- [x] All 7 endings authored with prose matching the philosophical tone in §2.3.
+- [x] Content conforms to `content_schema.py`.
+- [x] All prose fits the terminal budget.
+- [x] Tests pass cleanly.
 
 ## Rollback / Undo
 Revert additions to `data/content.json`.
 
 ## Execution Log
-<!-- Filled during execution: date, who/what agent, branch, commit hash, notes, deviations -->
+- 2026-11-11: Antigravity subagent authored 7 canonical ending records in `data/content.json` conforming to `content_schema.py` and §2.3 prose tones.
+- Verified with `tests/test_endings_content.py`: all 3 tests passing. All existing suite tests passing.

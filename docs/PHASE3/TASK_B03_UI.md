@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase3_TheShadow_PLAN.md](EPIC_Phase3_TheShadow_PLAN.md)
 - Slice: B — The Multiple Endings Spectrum
 - Layer: UI
-- Status: TODO
+- Status: DONE
 - Estimate: ~3h
 - Depends on: B01
 - Blocks: B04
@@ -25,8 +25,8 @@ Author clean, evocative, minimalist ASCII art vignettes (<= 8 lines high, <= 60 
 - **Formatting constraints:** Max width 60 columns, max height 8 lines. Pure ASCII characters (no wide Unicode emojis that break monospace terminal layouts). Minimalist and evocative.
 
 ## Preconditions
-- [ ] Canonical ending IDs established in Task A02/B01.
-- [ ] Clean working tree.
+- [x] Canonical ending IDs established in Task A02/B01.
+- [x] Clean working tree.
 
 ## Actionable Steps
 1. Create `game/endings_art.py`.
@@ -49,12 +49,13 @@ Author clean, evocative, minimalist ASCII art vignettes (<= 8 lines high, <= 60 
 - **Commands:** `python -m pytest tests/test_endings_art.py -v`.
 
 ## Definition of Done / Acceptance Criteria
-- [ ] `game/endings_art.py` contains 7 unique ASCII vignettes.
-- [ ] Dimensions conform strictly to terminal constraints (<= 60 cols, <= 8 rows).
-- [ ] Tests verify all dimensions and lookup safety.
+- [x] `game/endings_art.py` contains 7 unique ASCII vignettes.
+- [x] Dimensions conform strictly to terminal constraints (<= 60 cols, <= 8 rows).
+- [x] Tests verify all dimensions and lookup safety.
 
 ## Rollback / Undo
 Delete `game/endings_art.py` and `tests/test_endings_art.py`.
 
 ## Execution Log
-<!-- Filled during execution: date, who/what agent, branch, commit hash, notes, deviations -->
+- 2026-11-11: Antigravity subagent authored 7 pure ASCII art vignettes in `game/endings_art.py` with `get_ending_ascii()`, strictly capped to <= 8 lines high and <= 60 cols wide.
+- Verified with `tests/test_endings_art.py`: 3/3 tests passing.

@@ -24,22 +24,22 @@ Predecessor: [`../PHASE2/`](../PHASE2/README.md)
 
 | Task | Title | Est. | Depends on | Status |
 |---|---|---|---|---|
-| [A01](TASK_A01_SVC.md) | Profile persistence model (`game/profile.py`) for unlocked endings | 2.5h | GP-1, GP-2 | TODO |
-| [A02](TASK_A02_SVC.md) | Endings metadata schema and registry (`game/endings.py`, `content_schema.py`) | 2.5h | A01 | TODO |
-| [A03](TASK_A03_UI.md) | Endings Gallery screen (`screens/gallery.py`) with silhouettes and counts | 3.5h | A02 | TODO |
-| [A04](TASK_A04_UI.md) | Wire Main Menu with `ENDINGS` / `GALLERY` navigation option | 2h | A03 | TODO |
-| [A05](TASK_A05_TEST.md) | Profile persistence and Endings Gallery tests | 2.5h | A04 | TODO |
+| [A01](TASK_A01_SVC.md) | Profile persistence model (`game/profile.py`) for unlocked endings | 2.5h | GP-1, GP-2 | DONE |
+| [A02](TASK_A02_SVC.md) | Endings metadata schema and registry (`game/endings.py`, `content_schema.py`) | 2.5h | A01 | DONE |
+| [A03](TASK_A03_UI.md) | Endings Gallery screen (`screens/gallery.py`) with silhouettes and counts | 3.5h | A02 | DONE |
+| [A04](TASK_A04_UI.md) | Wire Main Menu with `ENDINGS` / `GALLERY` navigation option | 2h | A03 | DONE |
+| [A05](TASK_A05_TEST.md) | Profile persistence and Endings Gallery tests | 2.5h | A04 | DONE |
 
 ## Slice B — The Multiple Endings Spectrum (6)
 
 | Task | Title | Est. | Depends on | Status |
 |---|---|---|---|---|
-| [B01](TASK_B01_SVC.md) | Content authoring for the 7 canonical endings in `data/content.json` (§2.3) | 3h | A02 | TODO |
-| [B02](TASK_B02_SVC.md) | Ending resolution engine (`game/ending_resolver.py`) | 3h | B01 | TODO |
-| [B03](TASK_B03_UI.md) | ASCII art vignettes for all endings (§7.3) | 3h | B01 | TODO |
-| [B04](TASK_B04_UI.md) | Ending screen upgrade with ASCII art, profile unlocking, and gallery link | 3h | B02, B03 | TODO |
-| [B05](TASK_B05_SVC.md) | "The Long Walk" and "Stay" narrative branch integration | 2.5h | B02 | TODO |
-| [B06](TASK_B06_TEST.md) | Ending resolution criteria and transition tests | 2.5h | B04, B05 | TODO |
+| [B01](TASK_B01_SVC.md) | Content authoring for the 7 canonical endings in `data/content.json` (§2.3) | 3h | A02 | DONE |
+| [B02](TASK_B02_SVC.md) | Ending resolution engine (`game/ending_resolver.py`) | 3h | B01 | DONE |
+| [B03](TASK_B03_UI.md) | ASCII art vignettes for all endings (§7.3) | 3h | B01 | DONE |
+| [B04](TASK_B04_UI.md) | Ending screen upgrade with ASCII art, profile unlocking, and gallery link | 3h | B02, B03 | DONE |
+| [B05](TASK_B05_SVC.md) | "The Long Walk" and "Stay" narrative branch integration | 2.5h | B02 | DONE |
+| [B06](TASK_B06_TEST.md) | Ending resolution criteria and transition tests | 2.5h | B04, B05 | DONE |
 
 ## Slice C — The Three Memory Fragments (4)
 

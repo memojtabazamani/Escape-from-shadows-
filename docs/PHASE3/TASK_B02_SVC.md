@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase3_TheShadow_PLAN.md](EPIC_Phase3_TheShadow_PLAN.md)
 - Slice: B — The Multiple Endings Spectrum
 - Layer: SVC
-- Status: TODO
+- Status: DONE
 - Estimate: ~3h
 - Depends on: B01
 - Blocks: B04, B05, B06, C03
@@ -36,8 +36,8 @@ Implement an ending resolution engine in `game/ending_resolver.py` that inspects
   - If player dies within their first room visit in the Hall -> `the_long_walk`.
 
 ## Preconditions
-- [ ] Task B01 DONE (`data/content.json` has ending records).
-- [ ] `RunState` model is accessible.
+- [x] Task B01 DONE (`data/content.json` has ending records).
+- [x] `RunState` model is accessible.
 
 ## Actionable Steps
 1. Create `game/ending_resolver.py`.
@@ -64,12 +64,13 @@ Implement an ending resolution engine in `game/ending_resolver.py` that inspects
 - **Commands:** `python -m pytest tests/test_ending_resolver.py -v`.
 
 ## Definition of Done / Acceptance Criteria
-- [ ] `game/ending_resolver.py` cleanly maps `RunState` conditions to ending IDs.
-- [ ] Precedence order is strictly enforced without ambiguity.
-- [ ] 100% test coverage on all resolution branches.
+- [x] `game/ending_resolver.py` cleanly maps `RunState` conditions to ending IDs.
+- [x] Precedence order is strictly enforced without ambiguity.
+- [x] 100% test coverage on all resolution branches.
 
 ## Rollback / Undo
 Delete `game/ending_resolver.py` and `tests/test_ending_resolver.py`.
 
 ## Execution Log
-<!-- Filled during execution: date, who/what agent, branch, commit hash, notes, deviations -->
+- 2026-11-11: Antigravity subagent implemented `game/ending_resolver.py` with `resolve_escape_ending()` enforcing the strict 5-tier precedence hierarchy and `resolve_terminal_event()` handling Stay and The Long Walk. Verified with `tests/test_ending_resolver.py`: 8/8 tests passing.
+- 2026-11-11: Sceptical review and hardening: expanded trigger resolution to handle choice/destination IDs (`ending_long_walk`, `hall_accept_dark`, `hall_front_door_stay`), fixed `in_hall` check to prevent non-hall early deaths from triggering `the_long_walk`, and added Slice C memory fragment compatibility. Verified with 10 passing tests.

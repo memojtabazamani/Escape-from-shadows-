@@ -83,19 +83,19 @@ Success test: **A returning player discovers that running away only teaches the 
 ## Sub-Task Directory
 
 ### Slice A — Meta-Progression & The Endings Gallery (5 tasks, ~13h)
-- [ ] `TASK_A01_SVC` — Profile persistence model (`game/profile.py`) for unlocked endings (~2.5h) — depends GP-1, GP-2
-- [ ] `TASK_A02_SVC` — Endings metadata schema and registry (`game/endings.py`, `content_schema.py`) (~2.5h) — depends A01
-- [ ] `TASK_A03_UI` — Endings Gallery screen (`screens/gallery.py`) with silhouettes and counts (~3.5h) — depends A02
-- [ ] `TASK_A04_UI` — Wire Main Menu with `ENDINGS` / `GALLERY` navigation option (~2h) — depends A03
-- [ ] `TASK_A05_TEST` — Profile persistence and Endings Gallery tests (~2.5h) — depends A04
+- [x] `TASK_A01_SVC` — Profile persistence model (`game/profile.py`) for unlocked endings (~2.5h) — depends GP-1, GP-2
+- [x] `TASK_A02_SVC` — Endings metadata schema and registry (`game/endings.py`, `content_schema.py`) (~2.5h) — depends A01
+- [x] `TASK_A03_UI` — Endings Gallery screen (`screens/gallery.py`) with silhouettes and counts (~3.5h) — depends A02
+- [x] `TASK_A04_UI` — Wire Main Menu with `ENDINGS` / `GALLERY` navigation option (~2h) — depends A03
+- [x] `TASK_A05_TEST` — Profile persistence and Endings Gallery tests (~2.5h) — depends A04
 
 ### Slice B — The Multiple Endings Spectrum (6 tasks, ~17h)
-- [ ] `TASK_B01_SVC` — Content authoring for the 7 canonical endings in `data/content.json` (§2.3) (~3h) — depends A02
-- [ ] `TASK_B02_SVC` — Ending resolution engine (`game/ending_resolver.py`) (~3h) — depends B01
-- [ ] `TASK_B03_UI` — ASCII art vignettes for all endings (§7.3) (~3h) — depends B01
-- [ ] `TASK_B04_UI` — Ending screen upgrade with ASCII art, profile unlocking, and gallery link (~3h) — depends B02, B03
-- [ ] `TASK_B05_SVC` — "The Long Walk" and "Stay" narrative branch integration (~2.5h) — depends B02
-- [ ] `TASK_B06_TEST` — Ending resolution criteria and transition tests (~2.5h) — depends B04, B05
+- [x] `TASK_B01_SVC` — Content authoring for the 7 canonical endings in `data/content.json` (§2.3) (~3h) — depends A02
+- [x] `TASK_B02_SVC` — Ending resolution engine (`game/ending_resolver.py`) (~3h) — depends B01
+- [x] `TASK_B03_UI` — ASCII art vignettes for all endings (§7.3) (~3h) — depends B01
+- [x] `TASK_B04_UI` — Ending screen upgrade with ASCII art, profile unlocking, and gallery link (~3h) — depends B02, B03
+- [x] `TASK_B05_SVC` — "The Long Walk" and "Stay" narrative branch integration (~2.5h) — depends B02
+- [x] `TASK_B06_TEST` — Ending resolution criteria and transition tests (~2.5h) — depends B04, B05
 
 ### Slice C — The Three Memory Fragments (4 tasks, ~10.5h)
 - [ ] `TASK_C01_SVC` — Memory fragment item definitions and `RunState` tracking (§2.4) (~2.5h) — depends GP-1

@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase3_TheShadow_PLAN.md](EPIC_Phase3_TheShadow_PLAN.md)
 - Slice: B — The Multiple Endings Spectrum
 - Layer: SVC
-- Status: TODO
+- Status: DONE
 - Estimate: ~2.5h
 - Depends on: B02
 - Blocks: B06
@@ -27,8 +27,8 @@ Integrate the two philosophical non-standard endings from `docs/SUGGEST.md` §2.
 - **Precedent:** In `data/content.json`, the front door exit choice in `hall` (`hall_front_door`) currently transitions to `front_door_escape`. We will add a choice at the threshold to turn back / refuse exit, and wire the early Hall demise to recognize `the_long_walk`.
 
 ## Preconditions
-- [ ] Task B02 DONE (`ending_resolver.py` ready).
-- [ ] Baseline tests passing.
+- [x] Task B02 DONE (`ending_resolver.py` ready).
+- [x] Baseline tests passing.
 
 ## Actionable Steps
 1. In `data/content.json`, at the front door exit threshold scene (`front_door_escape` or sub-choice), author a choice:
@@ -45,12 +45,13 @@ Integrate the two philosophical non-standard endings from `docs/SUGGEST.md` §2.
 - **Commands:** `python -m pytest tests/test_long_walk_and_stay.py -v`.
 
 ## Definition of Done / Acceptance Criteria
-- [ ] Both "The Long Walk" and "Stay" endings are accessible via natural narrative choices.
-- [ ] Choices are telegraphed fairly.
-- [ ] Tests pass cleanly with 0 errors.
+- [x] Both "The Long Walk" and "Stay" endings are accessible via natural narrative choices.
+- [x] Choices are telegraphed fairly.
+- [x] Tests pass cleanly with 0 errors.
 
 ## Rollback / Undo
 Revert choice additions in `data/content.json` and `screens/game.py`.
 
 ## Execution Log
-<!-- Filled during execution: date, who/what agent, branch, commit hash, notes, deviations -->
+- 2026-11-11: Antigravity subagent wired "Stay" (`ending_stay`, `hall_front_door_stay`) and "The Long Walk" (`ending_long_walk`, `hall_accept_dark`, early hall death hook in `screens/death.py`) into content and screens.
+- Verified with `tests/test_long_walk_and_stay.py`: 3/3 tests passing.

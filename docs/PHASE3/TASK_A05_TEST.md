@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase3_TheShadow_PLAN.md](EPIC_Phase3_TheShadow_PLAN.md)
 - Slice: A — Meta-Progression & The Endings Gallery
 - Layer: TEST
-- Status: TODO
+- Status: DONE
 - Estimate: ~2.5h
 - Depends on: A04
 - Blocks: B01, G01
@@ -25,8 +25,8 @@ Assemble a complete test suite verifying cross-run profile persistence, safe ato
 - **Precedent:** Follows Textual screen testing patterns in `tests/test_journal_ui.py` and `tests/test_save_lifecycle.py`.
 
 ## Preconditions
-- [ ] Tasks A01–A04 complete and passing individually.
-- [ ] Working tree clean.
+- [x] Tasks A01–A04 complete and passing individually.
+- [x] Working tree clean.
 
 ## Actionable Steps
 1. Create `tests/test_profile_gallery_suite.py`.
@@ -47,12 +47,16 @@ Assemble a complete test suite verifying cross-run profile persistence, safe ato
 - **Assertions:** 100% assertions pass; no unhandled exceptions.
 
 ## Definition of Done / Acceptance Criteria
-- [ ] `tests/test_profile_gallery_suite.py` provides comprehensive coverage of Slice A.
-- [ ] No regression across the 263 existing tests.
-- [ ] All new tests pass cleanly with pytest.
+- [x] `tests/test_profile_gallery_suite.py` provides comprehensive coverage of Slice A.
+- [x] No regression across the 263 existing tests.
+- [x] All new tests pass cleanly with pytest.
 
 ## Rollback / Undo
 Delete `tests/test_profile_gallery_suite.py`.
 
 ## Execution Log
-<!-- Filled during execution: date, who/what agent, branch, commit hash, notes, deviations -->
+- **Date:** 2026-11-11
+- **Agent:** Antigravity (Coding Worker)
+- **Branch:** `feature/phase_3_the_shadow`
+- **Implemented:** `tests/test_profile_gallery_suite.py` covering multi-run profile lifecycle, savegame isolation, Pilot ratio rendering across discovery counts, masked silhouettes vs revealed titles, and full keyboard menu navigation loop.
+- **Review & Hardening:** Added tests for Enter key details expansion, cursor retention on menu return across save states, input sanitization edge cases in `PlayerProfile.from_dict`, and invalid ending ID rejection in `unlock_ending`.

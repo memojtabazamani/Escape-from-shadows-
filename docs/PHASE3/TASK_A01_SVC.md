@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase3_TheShadow_PLAN.md](EPIC_Phase3_TheShadow_PLAN.md)
 - Slice: A — Meta-Progression & The Endings Gallery
 - Layer: SVC
-- Status: TODO
+- Status: DONE
 - Estimate: ~2.5h
 - Depends on: GP-1, GP-2
 - Blocks: A02
@@ -28,8 +28,8 @@ Implement a persistent meta-progression profile manager (`game/profile.py`) that
 - **Storage path:** `data/profile.json` (or OS-appropriate platform directory matching `config.py` / `save.py`).
 
 ## Preconditions
-- [ ] Baseline test suite is green (263/263 passing).
-- [ ] Working tree is clean on `feature/phase_3_the_shadow`.
+- [x] Baseline test suite is green (263/263 passing).
+- [x] Working tree is clean on `feature/phase_3_the_shadow`.
 
 ## Actionable Steps
 1. Create `game/profile.py` with dataclass `PlayerProfile` tracking `unlocked_endings: set[str]`, `total_escapes: int`, and `total_deaths: int`.
@@ -47,13 +47,17 @@ Implement a persistent meta-progression profile manager (`game/profile.py`) that
 - **Commands:** `python -m pytest tests/test_profile_persistence.py -v`.
 
 ## Definition of Done / Acceptance Criteria
-- [ ] `PlayerProfile` model and serialization functions exist in `game/profile.py`.
-- [ ] Atomic file writes ensure zero risk of corrupted profile files on crash.
-- [ ] Profile state is completely isolated from single-run `save.json`.
-- [ ] All unit tests pass cleanly.
+- [x] `PlayerProfile` model and serialization functions exist in `game/profile.py`.
+- [x] Atomic file writes ensure zero risk of corrupted profile files on crash.
+- [x] Profile state is completely isolated from single-run `save.json`.
+- [x] All unit tests pass cleanly.
 
 ## Rollback / Undo
 Delete `game/profile.py` and `tests/test_profile_persistence.py`.
 
 ## Execution Log
-<!-- Filled during execution: date, who/what agent, branch, commit hash, notes, deviations -->
+- **Date:** 2026-11-11
+- **Agent:** Antigravity (Coding Worker)
+- **Branch:** `feature/phase_3_the_shadow`
+- **Implemented:** `game/profile.py` with `PlayerProfile`, atomic `save_profile()`, resilient `load_profile()`, `unlock_ending()`, `get_unlocked_endings()`, and `tests/test_profile_persistence.py`. Verified complete isolation from `savegame.json`.
+- **Review & Hardening:** Hardened input sanitization: reject empty/non-string ending IDs, clean blank/invalid IDs in `from_dict`, clamp negative stats to 0, and handle empty path fallbacks safely.

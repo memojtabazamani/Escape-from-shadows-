@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase3_TheShadow_PLAN.md](EPIC_Phase3_TheShadow_PLAN.md)
 - Slice: A — Meta-Progression & The Endings Gallery
 - Layer: UI
-- Status: TODO
+- Status: DONE
 - Estimate: ~2h
 - Depends on: A03
 - Blocks: A05
@@ -25,8 +25,8 @@ Expose the `ENDINGS` gallery option on `screens/main_menu.py` (`MainMenuScreen`)
 - **Precedent:** Follows the pattern established for `SETTINGS` and `CONTINUE`.
 
 ## Preconditions
-- [ ] Task A03 DONE (`EndingsGalleryScreen` available in `screens/gallery.py`).
-- [ ] Working tree clean.
+- [x] Task A03 DONE (`EndingsGalleryScreen` available in `screens/gallery.py`).
+- [x] Working tree clean.
 
 ## Actionable Steps
 1. In `screens/main_menu.py`, import `EndingsGalleryScreen` from `screens.gallery`.
@@ -44,13 +44,17 @@ Expose the `ENDINGS` gallery option on `screens/main_menu.py` (`MainMenuScreen`)
 - **Commands:** `python -m pytest tests/test_main_menu_gallery.py -v`.
 
 ## Definition of Done / Acceptance Criteria
-- [ ] Main menu displays "ENDINGS" in its menu list.
-- [ ] Selecting "ENDINGS" cleanly pushes `EndingsGalleryScreen`.
-- [ ] Returning with Escape returns to Main Menu without state corruption.
-- [ ] Tests pass cleanly.
+- [x] Main menu displays "ENDINGS" in its menu list.
+- [x] Selecting "ENDINGS" cleanly pushes `EndingsGalleryScreen`.
+- [x] Returning with Escape returns to Main Menu without state corruption.
+- [x] Tests pass cleanly.
 
 ## Rollback / Undo
 Revert edits to `screens/main_menu.py`.
 
 ## Execution Log
-<!-- Filled during execution: date, who/what agent, branch, commit hash, notes, deviations -->
+- **Date:** 2026-11-11
+- **Agent:** Antigravity (Coding Worker)
+- **Branch:** `feature/phase_3_the_shadow`
+- **Implemented:** Added `EndingsGalleryScreen` import to `screens/main_menu.py`, added `"ENDINGS"` entry to `self.options` in both `__init__()` and `refresh_options()`, wired `elif selected_option == "ENDINGS":` in `action_select()`, and created `tests/test_main_menu_gallery.py`.
+- **Review & Hardening:** Fixed cursor reset bug where returning to main menu with a save file forcibly reset cursor index to 0 (CONTINUE) instead of preserving the player's selected option. Added regression test for cursor retention.

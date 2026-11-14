@@ -183,6 +183,24 @@
           "telegraphs": [
             "Ember-red eyes blaze through the entryway fog — the banished hound has tracked you to the exit!"
           ]
+        },
+        {
+          "id": "hall_front_door_stay",
+          "label": "Turn away from the night air and bolt the door from the inside",
+          "destination": "ending_stay",
+          "tier": "scar",
+          "requirements": [
+            {
+              "predicate": "has_flag",
+              "flag": "knows_exit"
+            }
+          ]
+        },
+        {
+          "id": "hall_accept_dark",
+          "label": "Extinguish the flame and step into the silent dark",
+          "destination": "ending_long_walk",
+          "tier": "scar"
         }
       ]
     },
@@ -265,6 +283,10 @@
                 }
               ],
               "completion_effects": [
+                {
+                  "verb": "set_flag",
+                  "flag": "read_the_book"
+                },
                 {
                   "verb": "set_flag",
                   "flag": "knows_dog_name"
@@ -363,6 +385,20 @@
       "id": "shadow_walk_ending",
       "name": "The Dark Embrace",
       "prose": "Your trembling hands go still. The hammering in your chest slows to a quiet, cold rhythm.\nYou stop running. You stop looking for doors that only open inward.\nFrom the high corners of the ceiling, the shadows lower themselves like black silk.\n\"There now,\" the Shadow murmurs, its voice right against your ear, familiar as your own thought.\n\"Was that so hard? You fought so loudly for so small a scrap of tallow.\"\nYou do not close your eyes. You step forward into the cold, painless dark, and let the house take you.",
+      "tier": "ending",
+      "choices": []
+    },
+    {
+      "id": "ending_stay",
+      "name": "Stay",
+      "prose": "The night outside is vast, cold, and empty. You reach out and pull the iron door shut from the inside. The lock clicks. You are home.",
+      "tier": "ending",
+      "choices": []
+    },
+    {
+      "id": "ending_long_walk",
+      "name": "The Long Walk",
+      "prose": "You fell where you first stood. The darkness steps over you gently. It does not gloat. You were brave enough to open your eyes.",
       "tier": "ending",
       "choices": []
     },
@@ -682,6 +718,78 @@
           ]
         }
       ]
+    }
+  ],
+  "endings": [
+    {
+      "id": "the_long_walk",
+      "number": 1,
+      "title": "The Long Walk",
+      "name": "The Long Walk",
+      "tone": "Failure, but the shadow respects you",
+      "summary": "You perished at the very threshold of the house.",
+      "prose": "You fell where you first stood. The darkness steps over you gently. It does not gloat. You were brave enough to open your eyes.",
+      "terminal_type": "death"
+    },
+    {
+      "id": "meat_and_silence",
+      "number": 2,
+      "title": "Meat and Silence",
+      "name": "Meat and Silence",
+      "tone": "Ugly survival",
+      "summary": "You fed the Hell Dog and slipped past in the grease and quiet.",
+      "prose": "The cold bone grease coats your palms. Behind you, wet mastication fills the yard. You survived, but the sound will never leave your ears.",
+      "terminal_type": "victory"
+    },
+    {
+      "id": "the_quiet_exit",
+      "number": 3,
+      "title": "The Quiet Exit",
+      "name": "The Quiet Exit",
+      "tone": "Standard win",
+      "summary": "You unlatched the heavy front door and stepped out into the night.",
+      "prose": "The iron key turns with a dry snap. The night air hits your lungs like ice. You walk down the gravel drive and do not look back. You survived.",
+      "terminal_type": "victory"
+    },
+    {
+      "id": "what_the_book_knew",
+      "number": 4,
+      "title": "What the Book Knew",
+      "name": "What the Book Knew",
+      "tone": "Best \"true\" ending",
+      "summary": "You read the forbidden tome to completion and escaped with its truths.",
+      "prose": "The lock yields to your whispered word. The house cannot hold what has read its marrow. You step out under stars you finally understand.",
+      "terminal_type": "victory"
+    },
+    {
+      "id": "the_new_shadow",
+      "number": 5,
+      "title": "The New Shadow",
+      "name": "The New Shadow",
+      "tone": "You got out. Something came with you.",
+      "summary": "You escaped in pitch darkness. You did not leave alone.",
+      "prose": "The door opened into total blackness. You ran until your feet hit grass. The lantern was dead. You cast two shadows in the moonlight.",
+      "terminal_type": "victory"
+    },
+    {
+      "id": "homecoming",
+      "number": 6,
+      "title": "Homecoming",
+      "name": "Homecoming",
+      "tone": "Secret ending, recontextualizes the house",
+      "summary": "The three memory fragments revealed what the manor truly was: your home.",
+      "prose": "The photograph. The child's hand. The date stamped tomorrow. This was never a prison; it was a home you abandoned. The front door dissolves into dawn.",
+      "terminal_type": "victory"
+    },
+    {
+      "id": "stay",
+      "number": 7,
+      "title": "Stay",
+      "name": "Stay",
+      "tone": "The player chooses the house",
+      "summary": "You stood before the open night, turned around, and closed the door.",
+      "prose": "The night outside is vast, cold, and empty. You reach out and pull the iron door shut from the inside. The lock clicks. You are home.",
+      "terminal_type": "choice"
     }
   ]
 }

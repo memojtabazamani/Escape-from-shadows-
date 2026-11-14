@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase3_TheShadow_PLAN.md](EPIC_Phase3_TheShadow_PLAN.md)
 - Slice: B — The Multiple Endings Spectrum
 - Layer: TEST
-- Status: TODO
+- Status: DONE
 - Estimate: ~2.5h
 - Depends on: B04, B05
 - Blocks: G01
@@ -24,8 +24,8 @@ Author a comprehensive regression test suite in `tests/test_canonical_endings_su
 - **Files to create:** `tests/test_canonical_endings_suite.py`.
 
 ## Preconditions
-- [ ] Tasks B01–B05 complete.
-- [ ] Working tree clean.
+- [x] Tasks B01–B05 complete.
+- [x] Working tree clean.
 
 ## Actionable Steps
 1. Create `tests/test_canonical_endings_suite.py`.
@@ -47,12 +47,13 @@ Author a comprehensive regression test suite in `tests/test_canonical_endings_su
 - **Assertions:** All ending states resolve deterministically and unlock cleanly.
 
 ## Definition of Done / Acceptance Criteria
-- [ ] All 6 non-secret endings (and resolution foundation for secret ending) fully tested.
-- [ ] ASCII art and profile unlock verified.
-- [ ] 100% passing tests.
+- [x] All 6 non-secret endings (and resolution foundation for secret ending) fully tested.
+- [x] ASCII art and profile unlock verified.
+- [x] 100% passing tests.
 
 ## Rollback / Undo
 Delete `tests/test_canonical_endings_suite.py`.
 
 ## Execution Log
-<!-- Filled during execution: date, who/what agent, branch, commit hash, notes, deviations -->
+- 2026-11-11: Antigravity subagent authored `tests/test_canonical_endings_suite.py` verifying resolution, UI mounting, title/prose matching, ASCII art rendering, and PlayerProfile unlock persistence across all 7 canonical endings. Verified cleanly with 14 assertions across state and async UI test cases.
+- 2026-11-11: Added end-to-end `GameScreen` UI integration tests covering zero-oil escape to The New Shadow, Homecoming escape with zero oil, and shadow walk profile isolation (17 tests total).

@@ -8,6 +8,7 @@ from config import SettingsManager
 from game.content_schema import load_content
 from game.state import RunState
 from screens.game import GameScreen
+from screens.gallery import EndingsGalleryScreen
 from screens.settings import SettingsScreen
 
 
@@ -37,20 +38,20 @@ class MainMenuScreen(Screen):
         super().__init__()
         from game.save import has_saved_game
         if has_saved_game():
-            self.options = ["CONTINUE", "START GAME", "SETTINGS", "ABOUT", "EXIT"]
+            self.options = ["CONTINUE", "START GAME", "ENDINGS", "SETTINGS", "ABOUT", "EXIT"]
         else:
-            self.options = ["START GAME", "SETTINGS", "ABOUT", "EXIT"]
+            self.options = ["START GAME", "ENDINGS", "SETTINGS", "ABOUT", "EXIT"]
         self.selected = 0
 
     def refresh_options(self) -> None:
         from game.save import has_saved_game
         if has_saved_game():
-            self.options = ["CONTINUE", "START GAME", "SETTINGS", "ABOUT", "EXIT"]
-            self.selected = 0
+            self.options = ["CONTINUE", "START GAME", "ENDINGS", "SETTINGS", "ABOUT", "EXIT"]
         else:
-            self.options = ["START GAME", "SETTINGS", "ABOUT", "EXIT"]
-            if self.selected >= len(self.options):
-                self.selected = 0
+            self.options = ["START GAME", "ENDINGS", "SETTINGS", "ABOUT", "EXIT"]
+
+        if self.selected >= len(self.options):
+            self.selected = 0
 
         try:
             self.update_menu()
@@ -124,6 +125,9 @@ class MainMenuScreen(Screen):
             content_path = Path("data/content.json")
             content = load_content(content_path) if content_path.exists() else None
             self.app.push_screen(GameScreen(content=content, state=fresh_run))
+        elif selected_option == "ENDINGS":
+            status.update("Viewing Endings Gallery...")
+            self.app.push_screen(EndingsGalleryScreen())
         elif selected_option == "SETTINGS":
             status.update("Settings selected.")
             self.app.push_screen(SettingsScreen())

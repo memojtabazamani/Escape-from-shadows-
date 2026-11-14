@@ -4,7 +4,7 @@
 - Epic: [EPIC_Phase3_TheShadow_PLAN.md](EPIC_Phase3_TheShadow_PLAN.md)
 - Slice: A — Meta-Progression & The Endings Gallery
 - Layer: UI
-- Status: TODO
+- Status: DONE
 - Estimate: ~3.5h
 - Depends on: A02
 - Blocks: A04
@@ -27,8 +27,8 @@ Create a dedicated Textual screen `screens/gallery.py` (`EndingsGalleryScreen`) 
 - **Styling constraints:** Consistent terminal aesthetic: dark background (`#0d0d0d`), dim grey for locked entries (`#555555`), white/cyan for unlocked entries, amber highlight for tally. Supports Up/Down navigation, Enter for details, Escape to close.
 
 ## Preconditions
-- [ ] Task A01 and A02 DONE (`game/profile.py` and `game/endings.py` ready).
-- [ ] Clean working tree.
+- [x] Task A01 and A02 DONE (`game/profile.py` and `game/endings.py` ready).
+- [x] Clean working tree.
 
 ## Actionable Steps
 1. Create `screens/gallery.py` inheriting from `textual.screen.Screen`.
@@ -47,13 +47,17 @@ Create a dedicated Textual screen `screens/gallery.py` (`EndingsGalleryScreen`) 
 - **Commands:** `python -m pytest tests/test_gallery_ui.py -v`.
 
 ## Definition of Done / Acceptance Criteria
-- [ ] `screens/gallery.py` exists and mounts cleanly without UI errors.
-- [ ] All 7 endings are listed with correct locked/unlocked visual distinction per §9.4.
-- [ ] Keyboard navigation (Up, Down, Escape) works seamlessly.
-- [ ] Tests in `tests/test_gallery_ui.py` pass.
+- [x] `screens/gallery.py` exists and mounts cleanly without UI errors.
+- [x] All 7 endings are listed with correct locked/unlocked visual distinction per §9.4.
+- [x] Keyboard navigation (Up, Down, Escape) works seamlessly.
+- [x] Tests in `tests/test_gallery_ui.py` pass.
 
 ## Rollback / Undo
 Delete `screens/gallery.py` and `tests/test_gallery_ui.py`.
 
 ## Execution Log
-<!-- Filled during execution: date, who/what agent, branch, commit hash, notes, deviations -->
+- **Date:** 2026-11-11
+- **Agent:** Antigravity (Coding Worker)
+- **Branch:** `feature/phase_3_the_shadow`
+- **Implemented:** `screens/gallery.py` with `EndingsGalleryScreen`, tally display (`DISCOVERED: X OF 7`), locked silhouette masking (`[ ? ? ? ? ? ? ? ? ]`), unlocked title/summary revelation, cursor navigation with Up/Down/Enter/Escape, and comprehensive unit tests in `tests/test_gallery_ui.py`.
+- **Review & Hardening:** Fixed dead code where pressing Enter did not alter details; wired expanded view revealing criteria hints for unlocked endings and exploration prompts for locked ones. Fixed vertical scroll desynchronization on cursor movement and guarded against modulo zero.

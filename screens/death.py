@@ -150,6 +150,19 @@ class DeathScreen(Screen):
     def on_mount(self) -> None:
         from game.save import delete_saved_game
         delete_saved_game()
+        from game.profile import record_death, unlock_ending
+        record_death()
+        if self.state:
+            is_early_hall = (
+                self.state.has_flag("early_hall_death")
+                or (
+                    self.state.current_room in ("hall", "left_doorway_death", "clock_trap_death")
+                    and self.state.turn_count <= 3
+                    and self.state.visited.issubset({"hall", "left_doorway_death", "clock_trap_death"})
+                )
+            )
+            if is_early_hall:
+                unlock_ending("the_long_walk")
 
     def compose(self):
         with Center(id="death-container"):
